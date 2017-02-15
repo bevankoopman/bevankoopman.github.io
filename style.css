@@ -1,0 +1,232 @@
+body {
+  margin: 0em 0em 1em 0em;
+  padding:0px;
+  font-family: "LatoWeb";
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+div#main {
+  width: 65%;
+  /*max-width: 45em;*/
+  margin: 3em auto 1.5em auto;
+  padding: 2em 4em 2em 4em;
+}
+
+/*div.twtr-timeline, div.twtr-hd, div.twtr-ft {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}*/
+
+
+.hidden {
+  display: none;
+}
+
+a:link          { text-decoration: none; color: blue ;}
+a:visited       { text-decoration: none; color: blue ;}
+a:hover         { text-decoration: underline; }
+
+ul {
+  list-style-type:square;
+  margin-botton: 50px;
+  padding-left: 20px;
+}
+
+strong {font-weight: 400}
+
+h1, h2, h3 {
+  font-variant: normal;
+  letter-spacing: 0px;
+  font-weight: normal;
+}
+
+h1 { 
+  line-height: 60px;
+  font-size: 50px;
+  margin: 0px 0px 30px 0px;
+  padding-left: 0px;
+  font-family: LatoWebThin;
+  font-style: normal;
+}
+
+
+h2 {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+img { border: none; }
+
+/* <sidebar> */
+div.sidebar { 
+  width: 220px;
+  float: right;
+  padding: 10px 0px 0px 30px;
+  margin-top: 75px;
+}
+
+.sidebaritem { 
+  padding: 7px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.sidebaritem h2 { 
+  margin-top: 0px;
+  padding: 1px;
+  /*background: #eeeeee;*/
+  /*font-size: large;*/
+}
+.sidebaritem ul { 
+  list-style: none;
+  padding-left: 0px;
+}
+
+#photo img {
+  width: 200px;
+  border: solid thin #ccc;
+}
+
+#photo {
+  text-align: center;
+}
+
+
+
+
+.letters {
+  margin: 0px;
+  font-size: small;
+  color: gray;
+}
+
+
+
+.thesis {
+  font-style: italic;
+  font-size: 110%;
+}
+
+.socialmediabadge {
+  width: 50px;
+}
+
+.socialmediabadge:hover {
+    -webkit-filter: invert(70%);
+    filter: invert(70%);
+  }
+
+blockquote {
+  /*border-left: solid #dddddd;*/
+  margin: 0px;
+  padding: 0px;
+}
+
+div#footer { 
+  text-align: center;
+  margin-top: 0px;
+  padding-top: 0px;
+  font-size: small;
+}
+
+p.caption { 
+  margin-top: 0px;
+  font-size: x-small;
+}
+
+th, td {
+  text-align: left;   
+  padding: 5px;
+  border: thin dotted #ddd;
+}
+
+th {
+  background: #ddd;
+}
+
+table {
+  border: thin solid #ddd;
+}
+
+address { 
+  margin-top: 5px;
+  float: right;
+}
+
+a.delicious-tag {
+ color: #999999;
+ font-size: 10px;
+}
+
+table.contacts, table.contacts td {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  vertical-align: top;
+  padding-right: 30px;
+}
+
+ul.publications li {
+  margin-left:0em; 
+  padding-left:0.2em; 
+  margin-bottom:0.5em;
+  list-style-type: disc; 
+}
+
+div.scholar {
+  font-size: 13px;
+  letter-spacing: normal;
+  float: right;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
+div.scholar img {
+  width: 20px;
+  height: 20px;
+  position:relative;
+  float:left;
+  padding-right: 5px;
+}
+
+.abstract {
+  display: none;
+}
+
+.short, .long, .workshop, .journal, .book, .demo, .data {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 85%;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  margin-left: .5em;
+}
+
+.short { background-color: #f0ad4e;}
+.long { background-color: #5cb85c;}
+.journal { background-color: #4582ec;}
+.workshop, .demo { background-color: #f0ad4e; }
+.book { background-color: red; }
+
+
+code, pre {
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 12px;
+}
+
+.icon {
+  width: 40px;
+  float: left;
+  margin-right: 10px;
+}

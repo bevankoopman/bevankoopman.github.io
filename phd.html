@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+    <link rel="stylesheet" href="style.css" type="text/css">    
+    <link rel="SHORTCUT ICON" href="favicon.ico">
+    <title>Bevan Koopman</title>
+
+  </head>
+  
+  <body>
+
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-21438744-1', 'auto');
+      ga('send', 'pageview');
+  </script>     
+    
+    <div id="main">
+
+    <div class="sidebar">
+      <div class="sidebaritem" id="photo">
+        <br>
+        <a href="papers/KoopmanPhDThesis-SemanticSearchAsInference.pdf"><img src="img/PhDCover.png" alt="Bevan Koopman">Download full thesis</a> (PDF)
+      </div>
+    </div>
+      
+      <h2>Semantic Health as Inference: Applications in Health Informatics</h2>
+
+      [<a href="index.html">Home</a>]
+    	<p>
+        My PhD was submitted to the <a href="http://www.qut.edu.au">Queensland University of Technology</a> in December 2013 and awarded in May 2014. The thesis won an Outstanding PhD Doctoral Thesis Award for top 5% of graduates for 2014.
+      </p>
+
+      <h3>Citation</h3>
+
+      <p>B. Koopman. <i>Semantic Search as Inference: Applications in Health Informatics</i>. PhD thesis, Queensland University of Technology, Brisbane, Australia, May 2014.</p>
+
+      <pre>@phdthesis{Koopman2014Semantic-Search,
+	Address = {Brisbane, Australia},
+	Author = {Bevan Koopman},
+	Month = {May},
+	School = {Queensland University of Technology},
+	Title = {Semantic Search as Inference: Applications in Health Informatics},
+	Year = {2014}
+}
+				</pre>
+
+      <h3>Abstract</h3>
+            
+      <blockquote>
+
+
+      <!-- %What was done?  -->
+        <p>
+          In this thesis, we present models for semantic search: Information Retrieval (IR) models that elicit the meaning behind the words found in documents and queries rather than simply matching keywords. This is achieved by the integration of structured domain knowledge and data-driven information retrieval methods.
+        </p>
+
+        
+
+        <!-- %Why was it done? -->
+        <p>
+        The research is set within the medical domain to tackle the unique challenges within this domain; specifically, how to bridge the `semantic gap' --- overcome the mismatch between raw medical data and the way human beings interpret it. Bridging the semantic gap involves addressing two issues: <i>semantics</i>; that is, aligning the meaning or concepts behind words founds in documents and queries; and leveraging <i>inference</i>, which utilises semantics to infer relevant information.
+        </p>
+
+        <!-- %How was it done? -->
+        <p>
+        Three semantic search models --- all utilising concept-based rather than term-based representations --- are developed; these include: the Bag-of-concepts model, that uses concepts taken from the SNOMED~CT medical ontology as its underlying representation; the Graph-based Concept Weighting model, that captures concept dependence and importance in a novel weighting function; and the core contribution of the thesis, the Graph Inference model (GIN): a unified theoretical model of semantic search as inference, achieved by the integration of structured domain knowledge (ontologies) and statistical, information retrieval methods.  It is the GIN that provides the necessary mechanism for <i>inference</i> to bridge the semantic gap. All three models are empirically evaluated using clinical queries and a real-world collection of clinical records taken from the TREC Medical Records Track (MedTrack).
+        </p>
+
+        <!-- %What was found? -->
+        <p>
+        Our evaluation shows that the use of concept-based representations in the Bag-of-concepts model leads to improved retrieval effectiveness. When concepts are combined within the Graph-based Concept Weighting model, further improvements are possible. The evaluation of GIN highlighted that its inference mechanism is suited to hard queries --- those that perform poorly on a term-based system. In depth analysis also revealed that the GIN returned many new documents not retrieved by term-based systems and therefore never evaluated for relevance as part of the TREC MedTrack. This highlights that using standard IR test collections may underestimate the effectiveness of semantic search systems.
+        </p>
+
+        <!-- %What is the significance of the findings? -->
+        <p>
+        This work represents a significant step forward in the integration of structured domain knowledge and data-driven information retrieval methods. Furthermore, the thesis provides an understanding of inference --- when and how it should be applied for effective semantic search. It shows queries with certain characteristics benefit from inference, while others do not. The detailed investigation into the evaluation of semantic search systems shows how standard IR test collections may underestimate effectiveness of such systems and new methods of evaluation are suggested. The Graph Inference model, although developed within the medical domain, is generally defined and has implications in other areas, including web search, where an emerging research trend is to utilise structured knowledge resources for more effective semantic search.
+        </p>
+
+        <a href="papers/KoopmanPhDThesis-SemanticSearchAsInference.pdf">Download full thesis</a> (PDF)
+
+        
+    
+      </blockquote>
+
+      <h3>Slide Deck from PhD Final Seminar</h3>
+
+      <script async class="speakerdeck-embed" data-id="5c2968a9acbf423e88abf495016b5a76" data-ratio="1.2994923857868" src="//speakerdeck.com/assets/embed.js"></script>
+
+      <h3>Supervision</h3>
+        Principle: <a href="http://www.quantum-interaction.org/bruza/blogsite/">Prof. Peter Bruza</a>, Professor of Information Technology, <a href="http://www.qut.edu.au/">Queensland University of Technology</a><br>
+        Associate: <a href="http://staff.qut.edu.au/staff/sitbon/">Dr. Laurianne Sitbon</a>, Lecturer, <a href="http://www.qut.edu.au/">Queensland University of Technology</a><br>
+        Associate: <a href="http://people.csiro.au/L/M/Michael-Lawley">Dr. Michael Lawley</a>, Principal Research Scientist, <a href="http://csiro.au/">CSIRO</a>
+      
+    </div>
+    <div id="footer">
+      &copy; Copyright 
+      <script type="text/javascript">
+        document.write(new Date().getFullYear())
+      </script>
+       by <a href="#">Bevan Koopman</a> | Contact: <a href="mailto:bevan.koopman@csiro.au">bevan.koopman@csiro.au</a>
+    </div>
+   </body>
+</html>
