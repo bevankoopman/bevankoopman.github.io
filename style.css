@@ -1,13 +1,9 @@
 body {
   margin: 0em 0em 1em 0em;
   padding:0px;
-  /*font-family: "LatoWeb";
-  font-size: 15px;*/
   line-height: 1.8;
-
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
 }
 
 div#main {
@@ -59,13 +55,14 @@ h1 {
 
 h2 {
   margin-top: 40px;
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 200;
 }
 
 h3 {
   margin-top: 30px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 img { border: none; }
