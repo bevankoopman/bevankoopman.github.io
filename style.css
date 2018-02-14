@@ -208,15 +208,16 @@ div.scholar img {
   padding: .2em .6em .3em;
   font-size: 85%;
   line-height: 1;
-  color: #fff;
+  color: white;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
   margin-left: .5em;
+  opacity: 0.7;
 }
 
-.short { background-color: #f0ad4e;}
+.short { background-color: #f0ad4e; }
 .long { background-color: #5cb85c;}
 .journal { background-color: #4582ec;}
 .workshop, .demo { background-color: #f0ad4e; }
