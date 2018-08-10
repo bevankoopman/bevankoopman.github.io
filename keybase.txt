@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/bevankoopman
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://koopman.id.au
+  * I am bevankoopman (https://keybase.io/bevankoopman) on keybase.
+  * I have a public key ASC36qCF0Ny4SYpBDG1S1BO6BGcCi0uhklBNkzb3FxKXSQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120b7eaa085d0dcb8498a410c6d52d413ba0467028b4ba192504d9336f7171297490a",
+      "host": "keybase.io",
+      "kid": "0120b7eaa085d0dcb8498a410c6d52d413ba0467028b4ba192504d9336f7171297490a",
+      "uid": "2ab8c256819b6dcf0a0d139b1bc4e819",
+      "username": "bevankoopman"
+    },
+    "merkle_root": {
+      "ctime": 1533866769,
+      "hash": "ec91624709175a4dd03e31682116323445dd1f93dc56055fa992475b1df48628763802d235a2ebac8976421f23a935cbf432ac28b19ba5d6ea19c4c365eb9a40",
+      "hash_meta": "7fdcab6e499c76def556b337905b5b1d59bf8d9681775033be2aeb31f69d8cbf",
+      "seqno": 3435974
+    },
+    "service": {
+      "entropy": "2LcT9WiLYLAORlkMhL4F+bWO",
+      "hostname": "koopman.id.au",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "2.5.0"
+  },
+  "ctime": 1533866833,
+  "expire_in": 504576000,
+  "prev": "d9ec790122fe2c4de99ab7a140c9b208f015f9d9f3d0196ddfec3a3d9496d2ce",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgt+qghdDcuEmKQQxtUtQTugRnAotLoZJQTZM29xcSl0kKp3BheWxvYWTESpcCBsQg2ex5ASL+LE3pmrehQMmyCPAV+dnz0Blt3+w6PZSW0s7EIDzHUEPE+FGGusdTcEbFEUcYalqmv+ZosYzplKOYVbVFAgHCo3NpZ8RAbnl5FNT1eoATcW0Fw5lfUA+4TMJD25tOqHwlkwAg7yrNFllSbFrOPRL225/o9ewWBssj/Q0mZ4rpJL9x3GD1CahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIGBBT4Ku9kbSAaoVT38EZC+f44Ur7Nd3ypw8bFh3A/7Xo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bevankoopman
+
+==================================================================
