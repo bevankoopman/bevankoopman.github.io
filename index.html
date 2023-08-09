@@ -1,27 +1,133 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<head>
+	<title>Bevan Koopman's Homepage</title>
+	<!-- <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+	<style>
 
-    <link rel="stylesheet" href="style.css" type="text/css">    
-    <link rel="SHORTCUT ICON" href="favicon.ico">
-    <title>Bevan Koopman's Homepage</title>
+		body {
+			color: #777;
+		}
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D470GDSC9Y"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+		.pure-img-responsive {
+			max-width: 100%;
+			height: auto;
+		}
 
-  gtag('config', 'G-D470GDSC9Y');
-</script>
+        #patienttext {
+            width: 100%;
+        }
 
-  </head>
+		/*
+		This is the parent `<div>` that contains the menu and the content area.
+		*/
+		#layout {
+			position: relative;
+			left: 0;
+			padding-left: 0;
+		}
+			#layout.active #menu {
+				left: 150px;
+				width: 150px;
+			}
 
-  <body>
-    
-    <div id="main">
+			#layout.active .menu-link {
+				left: 150px;
+			}
+		/*
+		The content `<div>` is where all your content goes.
+		*/
+		.content {
+			margin: 0 auto;
+			padding: 0 2em;
+			max-width: 800px;
+			margin-bottom: 50px;
+			line-height: 1.6em;
+		}
+
+		.header {
+			 margin: 0;
+			 color: #333;
+			 text-align: center;
+			 padding: 2.5em 2em 0;
+			 border-bottom: 1px solid #eee;
+		 }
+			.header h1 {
+				margin: 0.2em 0;
+				font-size: 3em;
+				font-weight: 300;
+			}
+			 .header h2 {
+				font-weight: 300;
+				color: #ccc;
+				padding: 0;
+				margin-top: 0;
+			}
+
+		.content-subhead {
+			margin: 50px 0 20px 0;
+			font-weight: 300;
+			color: #888;
+		}
+		div.sidebar { 
+		  width: 220px;
+		  float: right;
+		  padding: 10px 0px 0px 30px;
+		  margin-right: 75px;
+		}
+
+		.sidebaritem { 
+		  padding: 7px;
+		  margin-bottom: 20px;
+		  text-align: left;
+		}
+		#photo img {
+		  width: 200px;
+		  border: solid thin #ccc;
+		}
+
+		.socialmediabadge {
+		  width: 50px;
+		}
+
+		blockquote {
+		/*border-left: solid #dddddd;*/
+			margin: 0px;
+			padding: 0px;
+			font-size: small;
+		}
+
+		.short, .long, .workshop, .journal, .book, .demo, .data {
+		  display: inline;
+		  padding: .2em .6em .3em;
+		  font-size: 85%;
+		  line-height: 1;
+		  color: white;
+		  text-align: center;
+		  white-space: nowrap;
+		  vertical-align: baseline;
+		  border-radius: .25em;
+		  margin-left: .5em;
+		  opacity: 0.85;
+		}
+
+		.short { background-color: #f0ad4e; }
+		.long { background-color: #5cb85c;}
+		.journal { background-color: #4582ec;}
+		.workshop, .demo { background-color: #f0ad4e; }
+		.book { background-color: red; }
+	</style>
+
+</head>
+<body>
+
+	<div id="main">
+			<div class="header">
+				<h1>Bevan R. Koopman</h1>
+				<h2>Researcher in Search & Language Technologies</h2>
+			</div>
+
+			 <div id="main">
       <div class="sidebar">
 
 	
@@ -29,141 +135,90 @@
   	  <img src="img/bevan_koopman-sketch.jpg" alt="Bevan Koopman"><br>
   	</div>
 
-
-    <div class="sidebaritem" style="text-align: center">
-      <!-- <a href="http://twitter.com/bevan_koopman"><img style="width:40px" src="img/twitter.png" alt="Twitter"></a>
-      <a href="http://au.linkedin.com/in/bevankoopman"><img style="width:40px" src="img/linkedin.png" alt="LinkedIn"></a>
-      <a href="http://github.com/bevankoopman"><img style="width:40px;" src="img/github.png" alt="Github"></a> -->
+  	<div class="sidebaritem" style="text-align: center">
       <a href="http://twitter.com/bevan_koopman"><img class="socialmediabadge" src="img/twitter2.png" alt="Twitter"></a>
       <a href="http://au.linkedin.com/in/bevankoopman"><img class="socialmediabadge"  src="img/linkedin2.png" alt="LinkedIn"></a>
       <a href="http://github.com/bevankoopman"><img class="socialmediabadge"  src="img/github2.png" alt="Github"></a>
     </div>
 
-  	<div class="sidebaritem" style="display: inline;">
-<!--       <h2>Latest News</h2> -->
+<!--   	<div class="sidebaritem" style="display: inline;">
+      <h2 class="content-subhead">Latest News</h2>
 
-      <!-- <blockquote class="twitter-tweet" lang="en"><p>Our paper <i><a href="papers/jasist-clinical_trials_query_generation.pdf">What makes an effective clinical query and querier?</a></i> looking at how clinicians search now published in JASIST.</p>&mdash; @bevan_koopman Sep 3 2017</blockquote> -->
+      <blockquote class="twitter-tweet" lang="en">Our paper <i><a href="papers/jasist-clinical_trials_query_generation.pdf">What makes an effective clinical query and querier?</a></i> looking at how clinicians search now published in JASIST.<br>&mdash; @bevan_koopman Sep 3 2017</blockquote>
 
-      <!-- <blockquote class="twitter-tweet" lang="en"><p>We are working on a test collection for matching patients to clinical trials; <a href="papers/sigir2016_clinicaltrials_collection.pdf">now published in SIGIR2016.</a> </p>&mdash; @bevan_koopman Apr 3 2016</blockquote> -->
+      <blockquote class="twitter-tweet" lang="en"><p>We are working on a test collection for matching patients to clinical trials; <a href="papers/sigir2016_clinicaltrials_collection.pdf">now published in SIGIR2016.</a> </p>&mdash; @bevan_koopman Apr 3 2016</blockquote>
 
-      <!-- <blockquote class="twitter-tweet" lang="en"><p>I'm part of a delegation of Australian scientists meeting Australian Senators and Ministers at Parliament House for <a href="http://scienceandtechnologyaustralia.org.au/focus-on/science-meets-parliament-2016/">"Science meets Parliament"</a> event.</p>&mdash; @bevan_koopman <a href="https://twitter.com/bevan_koopman/status/580522159992340480">Mar 1 2016</a></blockquote> -->
+      <blockquote class="twitter-tweet" lang="en"><p>I'm part of a delegation of Australian scientists meeting Australian Senators and Ministers at Parliament House for <a href="http://scienceandtechnologyaustralia.org.au/focus-on/science-meets-parliament-2016/">"Science meets Parliament"</a> event.</p>&mdash; @bevan_koopman <a href="https://twitter.com/bevan_koopman/status/580522159992340480">Mar 1 2016</a></blockquote>
 
-      <!-- <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">ECIR2015 paper <a href="http://t.co/FvOuTSS3yo">http://t.co/FvOuTSS3yo</a> evaluating <a href="https://twitter.com/hashtag/DrGoogle?src=hash">#DrGoogle</a> w <a href="https://twitter.com/guidozuc">@guidozuc</a> &amp; <a href="https://twitter.com/joaopalotti">@joaopalotti</a> has made news headlines <a href="http://t.co/IHRBZZ6dEw">http://t.co/IHRBZZ6dEw</a></p>&mdash; @guidozuc <a href="https://twitter.com/guidozuc/status/595374139319324673">May 4, 2015</a></blockquote>
+      <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">ECIR2015 paper <a href="http://t.co/FvOuTSS3yo">http://t.co/FvOuTSS3yo</a> evaluating <a href="https://twitter.com/hashtag/DrGoogle?src=hash">#DrGoogle</a> w <a href="https://twitter.com/guidozuc">@guidozuc</a> &amp; <a href="https://twitter.com/joaopalotti">@joaopalotti</a> has made news headlines <a href="http://t.co/IHRBZZ6dEw">http://t.co/IHRBZZ6dEw</a></p>&mdash; @guidozuc <a href="https://twitter.com/guidozuc/status/595374139319324673">May 4, 2015</a></blockquote>
 
-      <blockquote class="twitter-tweet" lang="en"><p>Asian IR Conference (AIRS2015) will be in Brisbane 2-5 Dec 2015. I&#39;m social media &amp; website chair. Check out <a href="http://airs-conference.org/2015">airs-conference.org/2015</a></p>&mdash; @bevan_koopman <a href="https://twitter.com/bevan_koopman/status/580522159992340480">Mar 25, 2015</a></blockquote> -->
+      <blockquote class="twitter-tweet" lang="en"><p>Asian IR Conference (AIRS2015) will be in Brisbane 2-5 Dec 2015. I&#39;m social media &amp; website chair. Check out <a href="http://airs-conference.org/2015">airs-conference.org/2015</a></p>&mdash; @bevan_koopman <a href="https://twitter.com/bevan_koopman/status/580522159992340480">Mar 25, 2015</a></blockquote>
+
+    </div> -->
+
 
     </div>
 
-  </div> <!-- sidebar -->
-      
-      <h1>Bevan Koopman</h1>
-    	<p>
-        The currently hold two positions:
-        <ul>
-          <li>Associate Professor in Language Technologies at the <a href="http://itee.uq.edu.au">School of Information Technology and Electrical Engineering</a>, <a href="http://www.uq.edu.au">Univeristy of Queensland</a>.</li>
-          <li>Senior Research Scientist at the <a href="http://aehrc.com/">Australian e-Health Research Centre</a>, <a href="http://csiro.au">CSIRO (Commonwealth Scientific and Industrial Research Organisation)</a>.</li>
-        </ul>
-      </p>
-      <p>My research interests are in Information Retrieval (i.e., Search). I am specifically focused on Semantic Search. I apply my research within Health Informatics &mdash; how can we improve the access, delivery and quality of health information to the people who need it.</p>
+			<div class="content">
+				<h2 class="content-subhead">About Me</h2>
+				<p>
+		        I'm a researcher focused on search and language technologies. I lead the Health Search team at the <a href="http://aehrc.com/">Australian e-Health Research Centre</a>, <a href="http://csiro.au">CSIRO (Commonwealth Scientific and Industrial Research Organisation)</a> and I'm an Associate Professor in Language Technologies at the <a href="http://itee.uq.edu.au">School of Information Technology and Electrical Engineering</a>, <a href="http://www.uq.edu.au">Univeristy of Queensland</a>.
+		    </p>
+		      <p><strong>At its core, my research has been about helping people find relevant and reliable health information to make health related decisions.</strong></p>
+
+					<p>From a <strong>clinical perspective</strong> then, my research is to tackle problems where people need to find answers and make clinical decisions in the face of overwhelming amounts of typically unstructured data. So that might be in evidence-based medicine, where clinicians need to search through vast amounts of literature and clinical trials to find a targeted treatment for a specific cancer. It can be automating the processing of matching and recruiting a patient to a clinical trials. </p>
+
+					<p>From a <strong>technical perspective</strong>, the key challenges here are 1) how to build models search through unstructured natural language; 2) understanding the semantics of someones query rather than just matching keywords; 3) how to inject medical domain knowledge into an AI model; 4) putting the human searcher in the loop so they can bring their domain knowledge to guide the model to relevant information; 5) the underlying techniques nowadays being training specific deep learning based ranking models.</p>
+				
+				<h2 class="content-subhead">Contact</h2>
+				<p>
+				    <a href="http://aehrc.com/">Australian e-Health Research Centre</a><br>
+				    Lvl 7, STARS Hospital, 296 Herston Rd, Herston, Queensland 4029, AUSTRALIA.<br>
+				    (<a href='https://goo.gl/maps/SCTWbHY1QpJKFpAr5'>Location on Google Maps</a>)<br>
+				    <!-- Phone: +61 7 3253 3600<br> -->
+				    Email: <a href="mailto:bevan.koopman@csiro.au"  target="_top">bevan.koopman@csiro.au</a><br>
+				  </p>
 
 
-	  <!--  <h2>About Me</h2>
-      <ul>
-        <li>I completed a <a href="phd.html">PhD</a> in Information Retrieval from  <a href="http://www.qut.edu.au/">Queensland University of Technology</a> in 2014.</li> 
-        <li>I've worked in research as an engineer/scientist for the <a href="http://www.uq.edu.au">University of Queensland</a> and the <a href="http://en.wikipedia.org/wiki/Distributed_Systems_Technology_Centre">Distributed Systems Technology Centre (DSTC)</a>.</li>
-        <li>I've worked in industry as a software engineer for <a href="http://www.mincom.com">Mincom Limited</a> and <a href="http://www.permeance.com.au">Permeance Technologies</a>.</li>
-      </ul> -->
-
-<!--       <h2>Research Interests and Current Projects</h2>
-
-      <p>
-      Information retrieval (the scientific field behind search engine technology) is my primary research interest. This span a number of topics/projects:
-      </p>
-
-
-      <h3>Semantic Search as Inference:</h3>
-      <ul>
-        <li>My interest here is in models for semantic search: Information Retrieval (IR) models that elicit the meaning behind the words found in documents and queries rather than simply matching keywords.</li>
-        <li>This is achieved by the integration of structured domain knowledge and data-driven information retrieval methods. A key novel components of such models is that retrieval is driven via an inference mechanism, i.e., to what extent does a information need (query) infer a document, rather than match a document.</li>
-        <li>Finally, an important component of these models are graph-based representations and inference realised as as a traversal over the graph. </li>
-        <li>This was the focus of my PhD thesis: "<a href="phd.html">Semantic Search as Inference: Applications in Health Informatics</a>".</li>
-      </ul>
-     -->
-
-      
-      <!-- <h3>Graph-based retrieval methods:</h3>
-      <p>
-        Graphs provided a natural and powerful means to capture the innate association between pieces of information, be they terms, documents, queries, entities or people. Network properties (for example, PageRank or clustering co-efficient) can provide simple but powerful means of deriving insights into information represented as a graph. In addition, graph representations can provide a means to follow associations between information to infer implicit information. Finally, vast amounts of structured domain knowledge (e.g., Google Knowledge Graph, dbpedia, etc.) are now available and provide the underlying graph structure to be exploited by graph-based retrieval methods.
-      </p> -->
-
-      <!-- <img src="img/hi_icon.png" class="icon"> -->
-  <!--     <h3>Health Informatics and e-Health:</h3>
-      <ul>
-        <li>Conducted with the <a href="http://aehrc.com">Australian e-Health Research Centre</a>, much of my Information Retrieval research is set within health informatics to tackle the unique challenges within this domain; specifically, how to bridge the ‘semantic gap’; that is, how to overcome the mismatch between raw medical data and the way human beings interpret it.</li>
-        <li>This may be a problem for medical professionals searching patients records, for researchers trying to search for eligible patients for clinical trials or even for the public trying to search for accurate, reliable and readable health information online. Overcoming some of these challenges in health informatics has the potential to have significant impact into an issue that is critical to us all: our health.</li>
-      </ul> -->
-      
-  
-  <h2>Contact</h2>
-  <p>
-    <a href="http://aehrc.com/">Australian e-Health Research Centre</a><br>
-    Lvl 7, STARS Hospital, 296 Herston Rd, Herston, Queensland 4029, AUSTRALIA.<br>
-    (<a href='https://goo.gl/maps/SCTWbHY1QpJKFpAr5'>Location on Google Maps</a>)<br>
-    <!-- Phone: +61 7 3253 3600<br> -->
-    Email: <a href="mailto:bevan.koopman@csiro.au"  target="_top">bevan.koopman@csiro.au</a><br>
-  </p>
-
-  <h2>Publications</h2>
-    <div class="scholar">
-      <a href="http://scholar.google.com.au/citations?user=twCn-tYAAAAJ"><img alt="Google Scholar" src="http://scholar.google.com.au/favicon-png.ico"> Google Scholar Profile</a>
+				<h2 class="content-subhead">Publications</h2>
+				<div class="scholar">
+      <a href="http://scholar.google.com.au/citations?user=twCn-tYAAAAJ">Google Scholar Profile</a>
     </div>
-  
+
+		<h3>2023</h3>
+
+				<ul class=publications>
 
 
-    <script type="text/javascript">
-    <!--
-        function toggle_visibility(id) {
-           var e = document.getElementById(id);
-           if(e.style.display == 'block')
-              e.style.display = 'none';
-           else
-              e.style.display = 'block';
-        }
-    //-->
-    </script>
-
-
-    <h3>2023</h3>
-
-    <ul class=publications>
-
-      <li><strong>B. Koopman</strong>, A. Mourad, H. Li, A. v. d. Vegt, S. Zhuang, S. Gibson, Y. Dang, D. Lawrence, and G. Zuccon. <a href="papers/ijdl2022-AgAsk_end_to_end.pdf">Agask: an agent to help answer farmer’s questions from scientific documents.</a> International Journal on Digital Libraries, June 2023. <span class="journal">Journal</span></li>
-      <li>H. Li, <strong>B. Koopman</strong>, A. Mourad, and G. Zuccon. <a href="papers/wsdm2023-agask-demo.pdf">Agask: A conversational search agent for answering agricultural questions</a>. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining, WSDM ’23, Feb 2023. <span class="short">Short paper</span></li>
-      <li>H. Li, A. Mourad, S. Zhuang, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/tois2023-prf_dr.pdf">Pseudo relevance feedback with deep language models and dense retrievers: Successes and pitfalls</a>. ACM Transactions on Information Systems, 41(3):1– 40, 2023.<span class="journal">Journal</span></li>
+      <li><strong>B. Koopman</strong>, A. Mourad, H. Li, A. v. d. Vegt, S. Zhuang, S. Gibson, Y. Dang, D. Lawrence, and G. Zuccon. <a href="papers/ijdl2022-AgAsk_end_to_end.pdf">Agask: an agent to help answer farmer's questions from scientific documents.</a> International Journal on Digital Libraries, June 2023. <span class="journal">Journal</span></li>
+      <li>H. Li, <strong>B. Koopman</strong>, A. Mourad, and G. Zuccon. <a href="papers/wsdm2023-agask-demo.pdf">Agask: A conversational search agent for answering agricultural questions</a>. In Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining, WSDM '23, Feb 2023. <span class="short">Short paper</span></li>
+      <li>H. Li, A. Mourad, S. Zhuang, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/tois2023-prf_dr.pdf">Pseudo relevance feedback with deep language models and dense retrievers: Successes and pitfalls</a>. ACM Transactions on Information Systems, 41(3):1- 40, 2023.<span class="journal">Journal</span></li>
       <li>S. Wang, H. Scells, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/sigir2023-chatgpt_sr.pdf">Can chatgpt write a good boolean query for systematic review literature search?</a> In Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR 2023)., July 2023.<span class="long">Long paper</span></li>
+
+  </ul>
 
 
     <h3>2022</h3>
 
     <ul class=publications>
 
-      <li>L. Lebrat, A. Nicolson, R. Santa Cruz, G. Belous, <strong>B. Koopman</strong>,, and J. Dowling. CSIRO at Image-CLEFMedical caption 2022. In Proceedings of the Working Notes of CLEF 2022, pages 1455–1473, Bologna, Italy, Sept. 2022. <span class="demo">Notebook</span></li>
+      <li>L. Lebrat, A. Nicolson, R. Santa Cruz, G. Belous, <strong>B. Koopman</strong>, and J. Dowling. CSIRO at Image-CLEFMedical caption 2022. In Proceedings of the Working Notes of CLEF 2022, pages 1455-1473, Bologna, Italy, Sept. 2022. <span class="demo">Notebook</span></li>
 
 
-      <li>A. Nicolson, J. Dowling, and <strong>B. Koopman</strong>,. ImageCLEF 2021 Best of Labs: The Curious Case of Caption Generation for Medical Images. CLEF, volume 13390, pages 1–14. Springer, 2022.<span class="long">Long paper</span></li>
+      <li>A. Nicolson, J. Dowling, and <strong>B. Koopman</strong>,. ImageCLEF 2021 Best of Labs: The Curious Case of Caption Generation for Medical Images. CLEF, volume 13390, pages 1-14. Springer, 2022.<span class="long">Long paper</span></li>
       
       <li>A. Nicolson, J. Dowling, and <strong>B. Koopman</strong>,. Improving Chest X-Ray Report Generation by Leveraging Warm-Starting. (Under Review), Jan. 2022. <span class="journal">Journal</span></li>
 
-      <li>B. Xin, H. Min, A. G. Gillman, B. Koopman, J. Dowling, and A. Nicolson. CSIRO at the ImageCLEFmed 2022 Tuberculosis Caverns Detection Challenge: A 2D and 3D deep learning detection network approach. In Proceedings of the Working Notes of CLEF 2022, pages 1626–1640, Bologna, Italy, Sept. 2022.<span class="demo">Notebook</span></li>
+      <li>B. Xin, H. Min, A. G. Gillman, B. Koopman, J. Dowling, and A. Nicolson. CSIRO at the ImageCLEFmed 2022 Tuberculosis Caverns Detection Challenge: A 2D and 3D deep learning detection network approach. In Proceedings of the Working Notes of CLEF 2022, pages 1626-1640, Bologna, Italy, Sept. 2022.<span class="demo">Notebook</span></li>
 
 
-    <li>S. Wang, H. Scells, J. Clark, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/sigir2022-sr_seed_collection.pdf">From little things big things grow: A collection with seed studies for medical systematic review literature search</a>. In Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval, SIGIR ’22, pages 3176–3186, 2022.<span class="long">Long paper</span></li>
+    <li>S. Wang, H. Scells, J. Clark, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/sigir2022-sr_seed_collection.pdf">From little things big things grow: A collection with seed studies for medical systematic review literature search</a>. In Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval, SIGIR '22, pages 3176-3186, 2022.<span class="long">Long paper</span></li>
 
     <li>H. Scells, C. Forbes, J. Clark, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/ictir2022-query_refine_log.pdf">The impact of query refinement on systematic review literature search: A query log analysis</a>. In International Conference on the Theory of Information Retrieval (ICTIR), 2022.<span class="long">Long paper</span></li>
 
     <li>H. Li, A. Mourad, S. Zhuang, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/tois2022-prf.pdf">Pseudo relevance feedback with deep language models and dense retrievers: Successes and pitfalls</a>. Transactions in Information Systems (TOIS), 2022.<span class="journal">Journal</span></li>
 
-    <li>H. Li, A. Mourad, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/sigir2022-nprf.pdf">How does feedback signal quality impact effectiveness of pseudo relevance feedback for passage retrieval</a>. In SIGIR Conference on Research and Development in Information Retrieval, pages 2154–2158, 2022.<span class="short">Short paper</span></li>
+    <li>H. Li, A. Mourad, <strong>B. Koopman</strong>, and G. Zuccon. <a href="papers/sigir2022-nprf.pdf">How does feedback signal quality impact effectiveness of pseudo relevance feedback for passage retrieval</a>. In SIGIR Conference on Research and Development in Information Retrieval, pages 2154-2158, 2022.<span class="short">Short paper</span></li>
 
   </ul>
 
@@ -179,7 +234,7 @@
 
       <li><strong>B. Koopman</strong>, T. Wright, N. Omer, V. McCabe, and G. Zuccon. <a href="papers/sigir2021-oscar_demo.pdf">Precision medicine search for paediatric oncology</a>. In SIGIR, 2021.<span class="short">Short paper</span></li>
 
-      <li>S. Cross, A. Mourad, G. Zuccon, and <strong>B. Koopman</strong>. <a href="papers/www2021-symptom_checkers.pdf">Search engines vs. symptom checkers: A comparison of their effectiveness for online health advice</a>. In Proceedings of the Web Conference 2021, WWW ’21, pages 206–216, 2021.<span class="long">Long paper</span></li>
+      <li>S. Cross, A. Mourad, G. Zuccon, and <strong>B. Koopman</strong>. <a href="papers/www2021-symptom_checkers.pdf">Search engines vs. symptom checkers: A comparison of their effectiveness for online health advice</a>. In Proceedings of the Web Conference 2021, WWW '21, pages 206-216, 2021.<span class="long">Long paper</span></li>
 
     </ul>
 
@@ -202,7 +257,7 @@
     <li>A. van der Vegt, G. Zuccon, <strong>B. Koopman</strong>, and A. Deacon. <a href="papers/jmla2020-timepressure.pdf">How searching under time pressure impacts clinical decision making</a>. Journal of the Medical Library Association, 108(4), 2020.<span class="journal">Journal</span></li>
 
 
-      <li><strong>B. Koopman</strong>, G. Zuccon, S. Chapman, Y. Dang, and D. Lawrence. <a href="papers/cair2020-AgAsk.pdf">How a conversational agent might help farmers in the field</a>. In 3rd International Workshop on Conversational Approaches to Information Retrieval (CAIR’20), Vancouver, Canada, 2020.<span class="long">Long paper</span></li>
+      <li><strong>B. Koopman</strong>, G. Zuccon, S. Chapman, Y. Dang, and D. Lawrence. <a href="papers/cair2020-AgAsk.pdf">How a conversational agent might help farmers in the field</a>. In 3rd International Workshop on Conversational Approaches to Information Retrieval (CAIR'20), Vancouver, Canada, 2020.<span class="long">Long paper</span></li>
 
 
       <li> H. Scells, G. Zuccon, and <strong>B. Koopman</strong>. <a href="papers/ecir2020-clf.pdf">You can teach an old dog new tricks - rank fusion applied to coordination level matching for ranking in systematic reviews</a>. In European Conference on Information Retrieval. Springer, 2020.<span class="long">Long paper</span></li>
@@ -218,7 +273,7 @@
 
       <ul class=publications>
 
-        <li> Jimmy, G. Zuccon, <strong>B. Koopman</strong>, and G. Demartini. <a href="papers/cikm2019-health_card.pdf">Health card retrieval for consumer health search: An empirical investigation of methods</a>. In Proceedings of the 28th ACM International Conference on Information and Knowledge Management, pages 2405–2408, 2019.<span class="long">Long paper</span></li>
+        <li> Jimmy, G. Zuccon, <strong>B. Koopman</strong>, and G. Demartini. <a href="papers/cikm2019-health_card.pdf">Health card retrieval for consumer health search: An empirical investigation of methods</a>. In Proceedings of the 28th ACM International Conference on Information and Knowledge Management, pages 2405-2408, 2019.<span class="long">Long paper</span></li>
 
 
         <li> H. Scells, G. Zuccon, <strong>B. Koopman</strong>, and J. Clark. <a href="https://colloquium2019.cochrane.org/abstracts/automatic-search-strategy-reformulation-interface-systematic-reviews">Automatic search strategy reformulation interface for systematic reviews</a>. In Proceedings of the Cochrane Colloquium, 2019.<span class="demo">Abstract</span></li>
@@ -251,7 +306,7 @@
 
         
 
-        <li><strong>B. Koopman</strong>, A. Nguyen, D. Cossio, M.-J. Courage, and G. Francois. <i><a href="papers/adcs2018-death.pdf">Extracting cancer mortality statistics from free-text death certificates: A view from the trenches</a></i>. In Proceedings of the 23rd Australasian Document Computing Symposium, ADCS’18, pages 6:1–6:4, Dunedin, New Zealand.<span class="short">Short paper</span></li>
+        <li><strong>B. Koopman</strong>, A. Nguyen, D. Cossio, M.-J. Courage, and G. Francois. <i><a href="papers/adcs2018-death.pdf">Extracting cancer mortality statistics from free-text death certificates: A view from the trenches</a></i>. In Proceedings of the 23rd Australasian Document Computing Symposium, ADCS'18, pages 6:1-6:4, Dunedin, New Zealand.<span class="short">Short paper</span></li>
 
         <li><strong>B. Koopman</strong>, A. Trotman, and P. Thomas, editors. <i><a href="https://dl.acm.org/citation.cfm?id=3291992">Proceedings of the 23rd Australasian Document Computing Symposium</a></i>. Association for Computing Machinery, 2018.<span class="journal">Editor</span></li>
 
@@ -259,17 +314,17 @@
 
         <li>Jimmy, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/clef2018-kbr.pdf">QUT ielab at CLEF 2018 consumer health search task: Knowledge base retrieval for consumer health search</a></i>. In CEUR Workshop Proceedings: Working Notes of CLEF 2018: Conference and Labs of the Evaluation Forum, 2018.<span class="workshop">Workshop paper</span></li>
 
-        <li>A. Nguyen, D. Truran, M. Kemp, <strong>B. Koopman</strong>, D. Conlan, J. O’Dwyer, M. Zhang, S. Karimi, H. Hassanzadeh, M. Lawley, and D. Green. <i><a href="papers/amia-2018-nguyen.pdf">Computer-assisted diagnostic coding: Effectiveness of an NLP-based approach using SNOMED CT to ICD-10 mappings</a></i>. In American Medical Informatics Association Annual Symposium (AMIA), 2018.<span class="long">Long paper</span></li>
+        <li>A. Nguyen, D. Truran, M. Kemp, <strong>B. Koopman</strong>, D. Conlan, J. O'Dwyer, M. Zhang, S. Karimi, H. Hassanzadeh, M. Lawley, and D. Green. <i><a href="papers/amia-2018-nguyen.pdf">Computer-assisted diagnostic coding: Effectiveness of an NLP-based approach using SNOMED CT to ICD-10 mappings</a></i>. In American Medical Informatics Association Annual Symposium (AMIA), 2018.<span class="long">Long paper</span></li>
 
         <li>H. Scells, L. Azzopardi, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/sigir2018_qvpp.pdf">Query variation performance prediction for systematic reviews</a></i>. In Proceedings of the 41st International ACM SIGIR Conference on Research and Development in Information Retrieval, Ann Arbor, U.S.A, 2018. <span class="short">Short paper</span></li>
 
-        <li>G. Zuccon and <strong>B. Koopman</strong>. <i><a href="papers/sigir2018-health_search-tutorial.pdf">SIGIR 2018 tutorial on health search (hs2018): A full-day from consumers to clinicians</a></i>. In The 41st International ACM SIGIR Conference on Research &#38; Development in Information Retrieval, SIGIR ’18, pages 1391–1394, Ann Arbor, MI, USA, 2018.<span class="demo">Tutorial</span></li>
+        <li>G. Zuccon and <strong>B. Koopman</strong>. <i><a href="papers/sigir2018-health_search-tutorial.pdf">SIGIR 2018 tutorial on health search (hs2018): A full-day from consumers to clinicians</a></i>. In The 41st International ACM SIGIR Conference on Research &#38; Development in Information Retrieval, SIGIR '18, pages 1391-1394, Ann Arbor, MI, USA, 2018.<span class="demo">Tutorial</span></li>
 
         <li> <strong>B. Koopman</strong>, G. Zuccon, A. Nguyen, A. Bergheim, and N. Grayson. <i><a href="papers/aim2017-cinsw_fusion_archtecture.pdf">Extracting cancer mortality statistics from death certificates: A hybrid machine learning and rule-based approach for common and rare cancers</a></i>. Artificial Intelligence in Medicine, To appear, 2018.<span class="journal">Journal</span></li>
 
         <li>Jimmy, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/ecir2018_choices_in_knowledge_graph_retrieval.pdf">Choices in knowledge-base retrieval for consumer health search</a></i>. In European Conference on Information Retrieval, 2018.<span class="long">Long paper</span></li>
 
-        <li>A. van der Vegt, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/jdoc201718_task_completion.pdf">A task completion framework to support single-interaction IR research</a></i>. Journal of Documentation, , 74(2):289–308, 2018.<span class="journal">Journal</span></li>
+        <li>A. van der Vegt, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/jdoc201718_task_completion.pdf">A task completion framework to support single-interaction IR research</a></i>. Journal of Documentation, , 74(2):289-308, 2018.<span class="journal">Journal</span></li>
 
       </ul>
 
@@ -282,7 +337,7 @@
 
         <li>H. Scells, G. Zuccon, <strong>B. Koopman</strong>, A. Deacon, L. Azzopardi, and S. Geva. <i><a href="papers/cikm2017_clitrials_pico.pdf">Integrating the framing of clinical questions via pico into the retrieval of medical literature for systematic reviews</a></i>. In ACM International Conference on Information and Knowledge Management (CIKM), Singapore, 2017.<span class="short">Short paper</span></li>
 
-        <li>H. Scells, G. Zuccon, A. Deacon, and <strong>B. Koopman</strong>. <i><a href="papers/clef2017-tar.pdf">QUT ielab at CLEF eHealth 2017 technology assisted reviews track: Initial experiments with learning to rank</a></i>. Working Notes of CLEF 2017: Conference and Labs of the Evaluation Forum, volume 1866, pages Paper–98. CEUR Workshop Proceedings, 2017.<span class="long">Long paper</span></li>
+        <li>H. Scells, G. Zuccon, A. Deacon, and <strong>B. Koopman</strong>. <i><a href="papers/clef2017-tar.pdf">QUT ielab at CLEF eHealth 2017 technology assisted reviews track: Initial experiments with learning to rank</a></i>. Working Notes of CLEF 2017: Conference and Labs of the Evaluation Forum, volume 1866, pages Paper-98. CEUR Workshop Proceedings, 2017.<span class="long">Long paper</span></li>
 
         <li><strong>B. Koopman</strong>, G. Zuccon, and P. Bruza. <i><a href="papers/jasist-clinical_trials_query_generation.pdf">What makes an effective clinical query and querier?</a></i> Journal of the Association for Information Science and Technology,  68(11):2557-2571, 2017.<span class="journal">Journal</span></li>
 
@@ -302,10 +357,10 @@
 
       <ul class=publications>
 
-      <li>Jimmy, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/adcs2016-titles.pdf">Boosting titles does not generally improve retrieval effectiveness</a></i>. In Proceedings of the 21st Australasian Document Computing Symposium, ADCS ’16, pages 25–32, Melbourne, Australia, 2016.
+      <li>Jimmy, G. Zuccon, and <strong>B. Koopman</strong>. <i><a href="papers/adcs2016-titles.pdf">Boosting titles does not generally improve retrieval effectiveness</a></i>. In Proceedings of the 21st Australasian Document Computing Symposium, ADCS '16, pages 25-32, Melbourne, Australia, 2016.
     <span class="long">Long paper</span></li>
 
-      <li>H. Hassanzadeh, A. Nguyen, and <strong>B. Koopman</strong>. <i><a href="papers/alta2016-concept_annotation.pdf">Evaluation of medical concept annotation systems on clinical records</a></i>. In Proceedings of the Australasian Language Technology Association Workshop 2016, pages 15–24, Melbourne, Australia, December 2016.<span class="long">Long paper</span></li>
+      <li>H. Hassanzadeh, A. Nguyen, and <strong>B. Koopman</strong>. <i><a href="papers/alta2016-concept_annotation.pdf">Evaluation of medical concept annotation systems on clinical records</a></i>. In Proceedings of the Australasian Language Technology Association Workshop 2016, pages 15-24, Melbourne, Australia, December 2016.<span class="long">Long paper</span></li>
 
 
       <li>A. Lipani, G. Zuccon, M. Lupu, <strong>B. Koopman</strong>, and A. Hanbury. <i><a href="papers/ictir2016-impact-fixed-cost.pdf">The impact of fixed-cost pooling strategies on test collection bias</a></i>. In International Conference on the Theory of Information Retrieval (ICTIR), Newark, USA, September 2016.<span class="short">Short paper</span></li>
@@ -322,13 +377,13 @@
 
       <li>G. Zuccon, <strong>B. Koopman</strong>, P. Bruza, and L. Azzopardi. <i><a href="http://dl.acm.org/citation.cfm?id=2838936">Integrating and evaluating neural word embeddings in information retrieval</a></i>. In Australasian Document Computing Symposium (ADCS), Sydney, Australia, December 2015. <span class="long">Long paper</span></li>
 
-      <li><strong>B. Koopman</strong>, G. Zuccon, P. Bruza, L. Sitbon, and M. Lawley. <i><a href="papers/jir2015-gin.pdf">Information retrieval as semantic inference: A graph inference model applied to medical search</a></i>. Information Retrieval, 19(1):6–37, 2015.<span class="journal">Journal</span></li>
+      <li><strong>B. Koopman</strong>, G. Zuccon, P. Bruza, L. Sitbon, and M. Lawley. <i><a href="papers/jir2015-gin.pdf">Information retrieval as semantic inference: A graph inference model applied to medical search</a></i>. Information Retrieval, 19(1):6-37, 2015.<span class="journal">Journal</span></li>
 
-      <li><strong>B. Koopman</strong>, G. Zuccon, A. Nguyen, A. Bergheim, and N. Grayson. <i><a href="papers/jmi2014-CancerCascadeClassification.pdf">Automatic ICD-10 classification of cancers from free-text death certificates</a></i>. Journal of Medical Informatics, 84(11):956–965, 2015. <span class="journal">Journal</span></li>
+      <li><strong>B. Koopman</strong>, G. Zuccon, A. Nguyen, A. Bergheim, and N. Grayson. <i><a href="papers/jmi2014-CancerCascadeClassification.pdf">Automatic ICD-10 classification of cancers from free-text death certificates</a></i>. Journal of Medical Informatics, 84(11):956-965, 2015. <span class="journal">Journal</span></li>
 
-      <li><strong>B. Koopman</strong>, G. Zuccon, A. Wagholikar, K. Chu, J. O’Dwyer, A. Nguyen, and G. Keijzers. <i><a href="papers/amia-edradiology.pdf">Automated reconciliation of radiology reports and discharge summaries</a></i>. In American Medical Informatics Association Annual Symposium (AMIA), November 2015. <span class="long">Long paper</span></li>
+      <li><strong>B. Koopman</strong>, G. Zuccon, A. Wagholikar, K. Chu, J. O'Dwyer, A. Nguyen, and G. Keijzers. <i><a href="papers/amia-edradiology.pdf">Automated reconciliation of radiology reports and discharge summaries</a></i>. In American Medical Informatics Association Annual Symposium (AMIA), November 2015. <span class="long">Long paper</span></li>
 
-      <li><strong>B. Koopman</strong>, S. Karimi, A. Nguyen, R. McGuire, D. Muscatello, M. Kemp, D. Truran, M. Zhang, and S. Thackway. <i><a href="papers/MoH-DiseaseSurveillance-BMC.pdf">Automatic classification of diseases from free-text death certificates for real-time surveillance</a></i>. BMC Medicial Informatics and Decision Making, 15(1):1–10, 2015.<span class="journal">Journal</span></li>
+      <li><strong>B. Koopman</strong>, S. Karimi, A. Nguyen, R. McGuire, D. Muscatello, M. Kemp, D. Truran, M. Zhang, and S. Thackway. <i><a href="papers/MoH-DiseaseSurveillance-BMC.pdf">Automatic classification of diseases from free-text death certificates for real-time surveillance</a></i>. BMC Medicial Informatics and Decision Making, 15(1):1-10, 2015.<span class="journal">Journal</span></li>
 
       <li>G. Zuccon, <strong>B. Koopman</strong>, and J. Palotti. <i><a href="papers/ecir2015_circumlocation_health_search.pdf">Diagnose this if you can: On the effectiveness of search engines in finding medical self-diagnosis information</a></i>. In European Conference on Information Retrieval (ECIR), April 2015. <span class="short">Short paper</span> <a href="https://github.com/ielab/ecir2015-DignoseThisIfYouCan"> <span class="data">Data</span></a></li>
 
@@ -340,7 +395,7 @@
 
 
 
-        <li><strong>Bevan Koopman</strong>. <i><a href="papers/sigir_forum2014-SemanticSearchAsInference.pdf">Semantic search as inference: Applications in health informatics</a></i>. SIGIR Forum, 48(2):116–117, December 2014. <span class="journal">Journal</span></li>
+        <li><strong>Bevan Koopman</strong>. <i><a href="papers/sigir_forum2014-SemanticSearchAsInference.pdf">Semantic search as inference: Applications in health informatics</a></i>. SIGIR Forum, 48(2):116-117, December 2014. <span class="journal">Journal</span></li>
 
         <li><strong>B. Koopman</strong> and G. Zuccon. <i><a href="papers/adcs2014-timespan.pdf">Document timespan normalisation and understanding temporality for clinical records search.</a></i> In Proceedings of the 19th Australasian Document Computing Symposium, Melbourne, Australia, November 2014. <span class="short">Short paper</span></li>
 
@@ -378,7 +433,7 @@
 
       <ul class=publications reversed="reversed" start="20">
 
-        <li><strong>B. Koopman</strong>, G. Zuccon, L. De Vine, A. Bakharia, P. Bruza, L. Sitbon, and A. Gibson. <i><a href="papers/adcs2013-adcs_impact.pdf">ADCS reaches adulthood: an analysis of the conference and its community over the last eighteen years</a></i>. In Proceedings of the 18th Australasian Document Computing Symposium, pages 34–41, Brisbane, Australia, December 2013. <span class="long">Long paper</span> <a href="https://github.com/ielab/adcs_adulthood"> <span class="data">Data</span></a></li>
+        <li><strong>B. Koopman</strong>, G. Zuccon, L. De Vine, A. Bakharia, P. Bruza, L. Sitbon, and A. Gibson. <i><a href="papers/adcs2013-adcs_impact.pdf">ADCS reaches adulthood: an analysis of the conference and its community over the last eighteen years</a></i>. In Proceedings of the 18th Australasian Document Computing Symposium, pages 34-41, Brisbane, Australia, December 2013. <span class="long">Long paper</span> <a href="https://github.com/ielab/adcs_adulthood"> <span class="data">Data</span></a></li>
 
         <li>G. Zuccon, <strong>B. Koopman</strong>, and A. Nguyen. <i><a href="papers/clef2013_t3_workingnotes.pdf">Retrieval of health advice on the web: AEHRC at Share/CLEF 2013 eHealth Evaluation Lab Task 3</a></i>. In Proceedings of CLEF Workshop on Cross-Language Evaluation of Methods, Applications, and Resources for eHealth Document Analysis, Valencia, Spain, September 2013. <span class="long">Long paper</span></li>
 
@@ -417,7 +472,7 @@
         
         <li><strong>Koopman, B.</strong>, Zuccon, G., Bruza, P., Sitbon, L., & Lawley, M. <i><a href="papers/cikm2012-semantic_similarity.pdf">An Evaluation of Corpus-driven Measures of Medical Concept Similarity for Information Retrieval</a></i>. 21st ACM International Conference on Information and Knowledge Management (CIKM). Maui, USA, October 2012. <span class="short">Short paper</span></li>
         
-        <li><strong>Koopman, B.</strong>, Bruza, P., Sitbon, L., Lawley, M. (2012). <i><a href="papers/amj2012-towards_semantic.pdf">Towards Semantic Search and Inference in Electronic Medical Records: an approach using Concept-based Information Retrieval</a></i>. Australasian Medical Journal: Special Issue on Artificial Intelligence in Health, 5(9), pp.482–488. <span class="journal">Journal</span></li>
+        <li><strong>Koopman, B.</strong>, Bruza, P., Sitbon, L., Lawley, M. (2012). <i><a href="papers/amj2012-towards_semantic.pdf">Towards Semantic Search and Inference in Electronic Medical Records: an approach using Concept-based Information Retrieval</a></i>. Australasian Medical Journal: Special Issue on Artificial Intelligence in Health, 5(9), pp.482-488. <span class="journal">Journal</span></li>
 
         </ul>
 
@@ -456,31 +511,8 @@
       </ul>
 
 
-    <!--   <h2>Citizen Science</h2>
+			</div>
+		</div>
 
-      <h3>Program Committee</h3>
-      Australasian Document Computing Symposium (ADCS) <br>
-      Australasian Workshop on Artificial Intelligence in Health (AIH) <br>
-      Asia Information Retrieval Societies Conference (AIRS) <br>
-
-      <h3>Reviewer</h3>
-      IEEE Transactions on Information Technology in BioMedicine <br>
-      Information Retrieval <br>
-      BMC Medical Informatics & Decision Making<br>
-      Australasian Medical Journal (Special Issue on Artificial Intelligence in Health) <br>
-      ACM Conference on Research and Development in Information Retrieval (SIGIR) <br>
-       European Conference on Information Retrieval (ECIR) <br>
-       Conference on Information and Knowledge Management (CIKM) <br>
-       Australasian Document Computing Symposium (ADCS) <br> -->
-            
-      
-    </div>
-    <div id="footer">
-      &copy; Copyright 
-      <script type="text/javascript">
-        document.write(new Date().getFullYear())
-      </script>
-       by <a href="#">Bevan Koopman</a> | Contact: <a href="mailto:bevan.koopman@csiro.au">bevan.koopman@csiro.au</a>
-    </div>
-   </body>
+</body>
 </html>
