@@ -1,6 +1,210 @@
 ---
-// Placeholder until "Build the publications section" (issue #11).
+// Publications timeline. Spec: https://github.com/bevankoopman/bevankoopman.github.io/issues/5
+import { getCollection } from 'astro:content';
+import { TYPE_GROUPS, type Publication } from '../lib/publications';
+
+const AUTHOR_LIMIT = 6;
+const RECENT_YEARS = 3;
+
+const pubs = (await getCollection('publications'))
+  .map((p) => p.data as Publication)
+  .sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
+const years = [...new Set(pubs.map((p) => p.year))];
+const recentCutoff = years[0] - RECENT_YEARS + 1;
+const counts = Object.fromEntries(TYPE_GROUPS.map((g) => [g.id, pubs.filter((p) => p.group === g.id).length]));
+const groupLabel = Object.fromEntries(TYPE_GROUPS.map((g) => [g.id, g.label]));
+
+// First N authors; if B. Koopman falls beyond N, keep him visible after an ellipsis.
+function authorView(p: Publication) {
+  const all = p.authors;
+  if (all.length <= AUTHOR_LIMIT) return { shown: all, meTail: null, hidden: 0 };
+  const shown = all.slice(0, AUTHOR_LIMIT);
+  const me = all.findIndex((a) => a.me);
+  const meTail = me >= AUTHOR_LIMIT ? all[me] : null;
+  return { shown, meTail, hidden: all.length - AUTHOR_LIMIT - (meTail ? 1 : 0) };
+}
+const searchText = (p: Publication) =>
+  [p.title, p.authors.map((a) => a.name).join(' '), p.venue, p.venueShort, p.year].join(' ').toLowerCase();
+const thesisPage: Record<string, string> = { 'Koopman2014Semantic-Search': '/phd.html' };
 ---
-<section id="publications" class="section wrap" aria-labelledby="pubs-h">
+<section id="publications" class="section wrap" aria-labelledby="pubs-h" data-pubs>
   <h2 id="pubs-h">Publications</h2>
+  <p class="sub">{pubs.length} papers since {years.at(-1)}.</p>
+
+  <div class="controls">
+    <div class="chips" role="group" aria-label="Filter by type">
+      <button type="button" class="chip" aria-pressed="true" data-group="all">All <span>{pubs.length}</span></button>
+      {TYPE_GROUPS.map((g) => (
+        <button type="button" class="chip" aria-pressed="false" data-group={g.id}>{g.label} <span>{counts[g.id]}</span></button>
+      ))}
+    </div>
+    <label class="search">
+      <span class="sr-only">Search publications</span>
+      <input type="search" placeholder="Search title, author, venue…" data-search autocomplete="off" />
+    </label>
+  </div>
+  <p class="status" aria-live="polite" data-status></p>
+
+  <div class="tl">
+    {years.map((y) => (
+      <div class="year" data-year={y} data-old={y < recentCutoff ? '' : undefined}>
+        <h3 class="yr">{y || 'Undated'}</h3>
+        {pubs.filter((p) => p.year === y).map((p) => {
+          const { shown, meTail, hidden } = authorView(p);
+          return (
+            <article class="pub" id={`pub-${p.id}`} data-group={p.group} data-text={searchText(p)}>
+              <h4 class="t">{p.title}<span class="pill">{groupLabel[p.group]}</span></h4>
+              <p class="m">
+                <span class="authors">
+                  {shown.map((a, i) => (<>{i > 0 && ', '}{a.me ? <b>{a.name}</b> : a.name}</>))}
+                  {hidden > 0 && (
+                    <>
+                      <span class="rest" hidden>{p.authors.slice(AUTHOR_LIMIT).map((a) => (<>, {a.me ? <b>{a.name}</b> : a.name}</>))}</span>
+                      <button type="button" class="more" data-more aria-label={`Show ${hidden} more authors`}>… +{hidden}</button>
+                    </>
+                  )}
+                  {meTail && <span class="me-tail">, <b>{meTail.name}</b></span>}
+                </span>
+                {' · '}<abbr class="venue" title={p.venue}>{p.venueShort}</abbr>
+              </p>
+              <p class="links">
+                {p.pdf && <a href={p.pdf}>PDF</a>}
+                {p.doi && <a href={`https://doi.org/${p.doi}`}>DOI</a>}
+                {p.arxiv && <a href={`https://arxiv.org/abs/${p.arxiv}`}>arXiv</a>}
+                {!p.doi && !p.arxiv && !p.pdf && p.url && <a href={p.url}>Link</a>}
+                {p.slides && <a href={p.slides}>Slides</a>}
+                {p.code && <a href={p.code}>Code</a>}
+                {thesisPage[p.id] && <a href={thesisPage[p.id]}>Thesis page</a>}
+                <button type="button" class="cite" data-cite={p.bibtex}>Cite</button>
+              </p>
+            </article>
+          );
+        })}
+      </div>
+    ))}
+  </div>
+  <p class="empty" hidden data-empty>No publications match.</p>
+  <button type="button" class="btn showall" data-showall>Show all years</button>
 </section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-pubs]')!;
+  root.classList.add('enhanced');
+  const chips = [...root.querySelectorAll<HTMLButtonElement>('.chip')];
+  const search = root.querySelector<HTMLInputElement>('[data-search]')!;
+  const showAllBtn = root.querySelector<HTMLButtonElement>('[data-showall]')!;
+  const status = root.querySelector<HTMLElement>('[data-status]')!;
+  const empty = root.querySelector<HTMLElement>('[data-empty]')!;
+  const years = [...root.querySelectorAll<HTMLElement>('.year')];
+  let group = 'all';
+  let showAll = false;
+
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    const filtering = group !== 'all' || q !== '';
+    let visible = 0;
+    for (const y of years) {
+      const yearOpen = filtering || showAll || !y.hasAttribute('data-old');
+      let n = 0;
+      for (const p of y.querySelectorAll<HTMLElement>('.pub')) {
+        const match = (group === 'all' || p.dataset.group === group) && (!q || q.split(/\s+/).every((w) => p.dataset.text!.includes(w)));
+        p.hidden = !(match && yearOpen);
+        if (!p.hidden) n++;
+      }
+      y.hidden = n === 0;
+      visible += n;
+    }
+    empty.hidden = visible > 0;
+    showAllBtn.hidden = filtering || showAll;
+    status.textContent = filtering ? `${visible} matching publication${visible === 1 ? '' : 's'}` : '';
+  }
+
+  chips.forEach((c) => c.addEventListener('click', () => {
+    group = c.dataset.group!;
+    chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+    apply();
+  }));
+  search.addEventListener('input', apply);
+  showAllBtn.addEventListener('click', () => { showAll = true; apply(); });
+
+  // A link to a specific paper (e.g. from the research cards) must reveal it.
+  function reveal() {
+    const el = location.hash.startsWith('#pub-') && document.getElementById(location.hash.slice(1));
+    if (el && el.hidden) { showAll = true; apply(); el.scrollIntoView(); }
+  }
+  addEventListener('hashchange', reveal);
+
+  root.addEventListener('click', async (e) => {
+    const t = e.target as HTMLElement;
+    if (t.matches('[data-more]')) {
+      t.parentElement!.querySelector<HTMLElement>('.rest')!.hidden = false;
+      t.parentElement!.querySelector('.me-tail')?.remove();
+      t.remove();
+    } else if (t.matches('[data-cite]')) {
+      try {
+        await navigator.clipboard.writeText(t.dataset.cite!);
+        t.textContent = 'Copied ✓';
+      } catch {
+        t.textContent = 'Copy failed';
+      }
+      setTimeout(() => (t.textContent = 'Cite'), 1600);
+    }
+  });
+
+  apply();
+  reveal();
+</script>
+
+<style>
+  .controls { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    cursor: pointer; font: inherit; font-size: 0.82rem; font-weight: 500;
+    border: 1px solid var(--rule); background: var(--card); color: var(--muted);
+    padding: 0.35rem 0.8rem; border-radius: 999px;
+  }
+  .chip span { opacity: 0.6; font-family: var(--font-mono); font-size: 0.72rem; margin-left: 0.2rem; }
+  .chip[aria-pressed='true'] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+  .search input {
+    font: inherit; font-size: 0.9rem; width: min(320px, 100%);
+    padding: 0.5rem 0.85rem; border-radius: 10px; border: 1px solid var(--rule); background: var(--card); color: var(--fg);
+  }
+  .search { flex: 0 1 320px; }
+  .status { min-height: 1.4em; margin: 0 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
+
+  .tl { border-left: 2px solid var(--rule); margin-left: 0.5rem; }
+  .yr { position: relative; font-weight: 800; font-size: 1.3rem; margin: 2rem 0 1rem 1.5rem; }
+  .yr::before {
+    content: ''; position: absolute; left: calc(-1.5rem - 7px); top: 0.45rem; width: 12px; height: 12px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--a1), var(--a2));
+  }
+  .pub {
+    margin: 0 0 0.85rem 1.5rem; padding: 1rem 1.25rem;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 12px;
+    scroll-margin-top: 5rem;
+  }
+  .pub:target { border-color: var(--a1); box-shadow: 0 0 0 3px color-mix(in srgb, var(--a1) 25%, transparent); }
+  .t { font-size: 1rem; font-weight: 600; margin: 0 0 0.3rem; line-height: 1.4; }
+  .pill { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; color: var(--a1); margin-left: 0.5rem; white-space: nowrap; }
+  .m { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .m b { color: var(--fg); font-weight: 600; }
+  .venue { text-decoration: none; font-style: italic; cursor: help; }
+  .more {
+    font: inherit; font-size: 0.8rem; color: var(--a1); background: none; border: 0; padding: 0 0.15rem; cursor: pointer;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0 0; }
+  .links a, .cite {
+    font: inherit; font-size: 0.72rem; font-weight: 600; text-decoration: none; cursor: pointer;
+    color: var(--a1); background: color-mix(in srgb, var(--a1) 12%, transparent);
+    border: 0; padding: 0.15rem 0.55rem; border-radius: 5px;
+  }
+  .links a:hover, .cite:hover { background: color-mix(in srgb, var(--a1) 22%, transparent); }
+  .empty { color: var(--muted); margin: 1.5rem 0 0 1.5rem; }
+  .showall { margin: 1rem 0 0 1.5rem; }
+  /* Without JS everything stays visible; the controls only appear once enhanced. */
+  .controls, .showall { display: none; }
+  .enhanced .controls { display: flex; }
+  .enhanced .showall { display: inline-flex; }
+  .enhanced .showall[hidden] { display: none; }
+  [hidden] { display: none !important; }
+</style>
