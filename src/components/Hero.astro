@@ -1,0 +1,52 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="hero wrap" aria-labelledby="hero-name">
+  <div>
+    <p class="eyebrow">{site.eyebrow}</p>
+    <h1 id="hero-name">{site.name}</h1>
+    <p class="role">{site.role}</p>
+    <p class="bio">{site.bio}</p>
+    <div class="cta">
+      <a class="btn primary" href="#publications">Publications →</a>
+      <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" />Email</a>
+      <a class="btn" href={site.links.scholar}><Icon name="scholar" />Google Scholar</a>
+      <a class="btn" href={site.links.github}><Icon name="github" />GitHub</a>
+      <a class="btn" href={site.links.linkedin}><Icon name="linkedin" />LinkedIn</a>
+      <a class="icon-link" href={site.links.dblp} aria-label="DBLP" title="DBLP"><Icon name="dblp" /></a>
+    </div>
+  </div>
+  <div class="portrait">
+    <img src={site.photo} alt="Sketch portrait of Bevan Koopman" width="320" height="320" />
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center;
+    padding-top: 5rem; padding-bottom: 4rem;
+  }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--a1); margin: 0 0 1rem; }
+  h1 { font-size: clamp(1.9rem, 3.5vw, 2.5rem); line-height: 1.15; letter-spacing: -0.025em; font-weight: 700; margin: 0 0 0.35rem; }
+  .role { font-size: 1.05rem; font-weight: 500; margin: 0 0 1.25rem; }
+  .bio { font-size: 1.15rem; color: var(--muted); max-width: 36rem; margin: 0 0 2rem; }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+  .icon-link { display: grid; place-items: center; width: 40px; height: 40px; color: var(--muted); border-radius: 10px; }
+  .icon-link:hover { color: var(--fg); }
+  .icon-link :global(svg) { width: 20px; height: 20px; }
+  .portrait { position: relative; justify-self: center; }
+  .portrait::before {
+    content: ''; position: absolute; inset: -14px; border-radius: 32px;
+    background: linear-gradient(135deg, var(--a1), var(--a2)); opacity: 0.25; filter: blur(24px);
+  }
+  .portrait img {
+    position: relative; display: block; width: min(320px, 70vw); aspect-ratio: 1; object-fit: cover;
+    border-radius: 28px; border: 1px solid var(--rule);
+  }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 2.5rem; gap: 2rem; }
+    .portrait { order: -1; justify-self: start; }
+    .portrait img { width: 140px; border-radius: 20px; }
+  }
+</style>

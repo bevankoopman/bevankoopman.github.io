@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Research from '../components/Research.astro';
+import Publications from '../components/Publications.astro';
+import { site } from '../data/site';
+---
+<Base title={`${site.name} · ${site.role}`} description={site.bio}>
+  <Hero />
+  <Research />
+  <Publications />
+</Base>

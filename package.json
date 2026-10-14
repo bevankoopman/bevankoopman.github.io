@@ -1,0 +1,14 @@
+{
+  "name": "bevankoopman-github-io",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@retorquere/bibtex-parser": "12.1.7",
+    "astro": "7.3.5"
+  }
+}

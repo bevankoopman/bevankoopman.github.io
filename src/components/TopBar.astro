@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+---
+<header class="bar">
+  <div class="wrap in">
+    <a class="mono" href="/" aria-label="Bevan Koopman, home"><span class="grad">BK</span></a>
+    <nav aria-label="Main">
+      <a href="/#research">Research</a>
+      <a href="/#publications">Publications</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <button class="theme" type="button" aria-label="Toggle dark mode" data-theme-toggle>
+      <span class="when-light"><Icon name="moon" /></span>
+      <span class="when-dark"><Icon name="sun" /></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+</script>
+
+<style>
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .in { display: flex; align-items: center; gap: 1.5rem; padding-top: 0.8rem; padding-bottom: 0.8rem; }
+  .mono { margin-right: auto; font-weight: 800; letter-spacing: -0.02em; font-size: 1.15rem; text-decoration: none; }
+  nav { display: flex; gap: 1.5rem; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+  nav a:hover { color: var(--fg); }
+  .theme {
+    display: grid; place-items: center; width: 36px; height: 36px; padding: 0;
+    border: 1px solid var(--rule); border-radius: 50%; background: var(--card); color: var(--fg); cursor: pointer;
+  }
+  .theme :global(svg) { width: 16px; height: 16px; }
+  .when-dark { display: none; }
+  :global([data-theme='dark']) .when-dark { display: contents; }
+  :global([data-theme='dark']) .when-light { display: none; }
+  @media (max-width: 560px) { nav { gap: 1rem; } nav a { font-size: 0.85rem; } }
+</style>
