@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import { themes } from '../data/site';
+
+const pubs = (await getCollection('publications')).map((p) => p.data);
+const byTheme = Object.fromEntries(
+  themes.map((t) => [t.id, pubs.filter((p) => p.featured === t.id).sort((a, b) => b.year - a.year)]),
+);
+---
+<section id="research" class="section wrap" aria-labelledby="research-h">
+  <h2 id="research-h">Research</h2>
+  <p class="sub">Building and evaluating LLM-powered search and AI systems.</p>
+  <div class="themes">
+    {themes.map((t) => (
+      <article class="card">
+        <div class="ic" aria-hidden="true">{t.icon}</div>
+        <h3>{t.title}</h3>
+        <p>{t.blurb}</p>
+        {byTheme[t.id].length > 0 && (
+          <ul class="papers" aria-label={`Key papers: ${t.title}`}>
+            {byTheme[t.id].map((p) => (
+              <li>
+                <a href={`#pub-${p.id}`}>{p.title}</a>
+                <span class="venue">{p.venueShort}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .card {
+    display: flex; flex-direction: column;
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.5rem;
+  }
+  .ic {
+    width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-size: 1.2rem;
+    background: color-mix(in srgb, var(--a1) 15%, transparent); margin-bottom: 1rem;
+  }
+  h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+  p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .papers {
+    list-style: none; margin: 1.25rem 0 0; padding: 1rem 0 0; border-top: 1px solid var(--rule);
+    display: grid; gap: 0.7rem; font-size: 0.85rem; line-height: 1.4;
+  }
+  .papers a { text-decoration: none; font-weight: 500; }
+  .papers a:hover { text-decoration: underline; text-decoration-color: var(--a1); }
+  .venue { display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--a1); margin-top: 0.15rem; }
+  @media (max-width: 860px) { .themes { grid-template-columns: 1fr; } }
+</style>

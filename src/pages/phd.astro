@@ -1,0 +1,121 @@
+---
+// Served at /phd.html (build.format: 'preserve'), same URL as the old page.
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const thesis = (await getEntry('publications', 'Koopman2014Semantic-Search'))!.data;
+const pdf = thesis.pdf as string;
+const title = 'Semantic Search as Inference: Applications in Health Informatics';
+---
+<Base title={`${title} · PhD thesis · Bevan Koopman`} description="Bevan Koopman's PhD thesis (QUT, 2014): models for semantic search that integrate structured domain knowledge with data-driven information retrieval.">
+  <article class="wrap phd">
+    <p class="eyebrow">PhD thesis · Queensland University of Technology · 2014</p>
+    <h1>{title}</h1>
+
+    <div class="grid">
+      <div class="body">
+        <p class="lede">
+          Submitted to the <a href="https://www.qut.edu.au">Queensland University of Technology</a> in December 2013
+          and awarded in May 2014. The thesis won an Outstanding Doctoral Thesis Award (top 5% of graduates for 2014).
+        </p>
+
+        <h2>Abstract</h2>
+        <p>
+          In this thesis, we present models for semantic search: Information Retrieval (IR) models that elicit the meaning
+          behind the words found in documents and queries rather than simply matching keywords. This is achieved by the
+          integration of structured domain knowledge and data-driven information retrieval methods.
+        </p>
+        <p>
+          The research is set within the medical domain to tackle the unique challenges within this domain; specifically,
+          how to bridge the ‘semantic gap’ — overcome the mismatch between raw medical data and the way human beings
+          interpret it. Bridging the semantic gap involves addressing two issues: <i>semantics</i>; that is, aligning the
+          meaning or concepts behind words founds in documents and queries; and leveraging <i>inference</i>, which utilises
+          semantics to infer relevant information.
+        </p>
+        <p>
+          Three semantic search models — all utilising concept-based rather than term-based representations — are
+          developed; these include: the Bag-of-concepts model, that uses concepts taken from the SNOMED CT medical ontology
+          as its underlying representation; the Graph-based Concept Weighting model, that captures concept dependence and
+          importance in a novel weighting function; and the core contribution of the thesis, the Graph Inference model
+          (GIN): a unified theoretical model of semantic search as inference, achieved by the integration of structured
+          domain knowledge (ontologies) and statistical, information retrieval methods. It is the GIN that provides the
+          necessary mechanism for <i>inference</i> to bridge the semantic gap. All three models are empirically evaluated
+          using clinical queries and a real-world collection of clinical records taken from the TREC Medical Records Track
+          (MedTrack).
+        </p>
+        <p>
+          Our evaluation shows that the use of concept-based representations in the Bag-of-concepts model leads to improved
+          retrieval effectiveness. When concepts are combined within the Graph-based Concept Weighting model, further
+          improvements are possible. The evaluation of GIN highlighted that its inference mechanism is suited to hard
+          queries — those that perform poorly on a term-based system. In depth analysis also revealed that the GIN returned
+          many new documents not retrieved by term-based systems and therefore never evaluated for relevance as part of the
+          TREC MedTrack. This highlights that using standard IR test collections may underestimate the effectiveness of
+          semantic search systems.
+        </p>
+        <p>
+          This work represents a significant step forward in the integration of structured domain knowledge and data-driven
+          information retrieval methods. Furthermore, the thesis provides an understanding of inference — when and how it
+          should be applied for effective semantic search. It shows queries with certain characteristics benefit from
+          inference, while others do not. The detailed investigation into the evaluation of semantic search systems shows
+          how standard IR test collections may underestimate effectiveness of such systems and new methods of evaluation
+          are suggested. The Graph Inference model, although developed within the medical domain, is generally defined and
+          has implications in other areas, including web search, where an emerging research trend is to utilise structured
+          knowledge resources for more effective semantic search.
+        </p>
+
+        <h2>Slides from the final seminar</h2>
+        <div class="deck">
+          <script is:inline async class="speakerdeck-embed" data-id="5c2968a9acbf423e88abf495016b5a76" data-ratio="1.2994923857868" src="https://speakerdeck.com/assets/embed.js"></script>
+        </div>
+
+        <h2>Supervision</h2>
+        <ul class="sup">
+          <li><span>Principal</span> <a href="http://www.quantum-interaction.org/bruza/blogsite/">Prof. Peter Bruza</a>, Queensland University of Technology</li>
+          <li><span>Associate</span> <a href="http://staff.qut.edu.au/staff/sitbon/">Dr. Laurianne Sitbon</a>, Queensland University of Technology</li>
+          <li><span>Associate</span> <a href="http://people.csiro.au/L/M/Michael-Lawley">Dr. Michael Lawley</a>, CSIRO</li>
+        </ul>
+      </div>
+
+      <aside class="side">
+        <a class="cover" href={pdf}>
+          <img src="/img/PhDCover.png" alt="Thesis cover: Semantic Search as Inference" width="260" />
+        </a>
+        <a class="btn primary" href={pdf}>Download thesis (PDF)</a>
+        <h2>Citation</h2>
+        <p class="cite-text">B. Koopman. <i>{title}</i>. PhD thesis, Queensland University of Technology, Brisbane, Australia, May 2014.</p>
+        <pre><code>{thesis.bibtex}</code></pre>
+        <a class="back" href="/#publications">← All publications</a>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .phd { padding-top: 3.5rem; padding-bottom: 2rem; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--a1); margin: 0 0 0.75rem; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; line-height: 1.15; margin: 0 0 2.5rem; max-width: 22ch; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 3.5rem; align-items: start; }
+  .body { max-width: 68ch; }
+  .lede { font-size: 1.1rem; }
+  h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 0.75rem; }
+  .body p { color: var(--muted); }
+  .body .lede { color: var(--fg); }
+  .deck { border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); }
+  .sup { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+  .sup span { display: inline-block; min-width: 6.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--a1); }
+  .side { position: sticky; top: 5rem; display: grid; gap: 1rem; }
+  .side h2 { margin: 1rem 0 0; }
+  .cover img { display: block; width: 100%; border-radius: 12px; border: 1px solid var(--rule); }
+  .side .btn { justify-content: center; }
+  .cite-text { font-size: 0.85rem; color: var(--muted); margin: 0; }
+  pre {
+    margin: 0; padding: 0.9rem; overflow-x: auto; font-size: 0.72rem; line-height: 1.5;
+    font-family: var(--font-mono); background: var(--card); border: 1px solid var(--rule); border-radius: 10px;
+  }
+  .back { font-size: 0.9rem; color: var(--muted); }
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; gap: 2rem; }
+    .side { position: static; order: -1; }
+    .cover img { max-width: 200px; }
+  }
+</style>
