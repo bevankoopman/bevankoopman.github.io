@@ -1,0 +1,321 @@
+<!doctype html>
+<!--
+  PROTOTYPE, throwaway. Answers "Choose the visual direction" (issue #4).
+  Three structurally different homepage variants, switchable via ?variant=A|B|C
+  (or the floating bar / left-right arrow keys). Real bio and real publications
+  sampled from src/data/publications.bib. Not production code.
+  Run: open this file in a browser, or `python3 -m http.server` from the repo root
+  and visit /prototypes/visual-direction.html
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROTOTYPE · Visual direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: inherit; }
+  .variant { display: none; }
+  .variant.on { display: block; }
+
+  /* ---------- Shared: theme toggle ---------- */
+  .theme-btn { cursor: pointer; border: 1px solid currentColor; background: transparent; color: inherit;
+    border-radius: 999px; padding: .3rem .7rem; font: inherit; font-size: .8rem; opacity: .7; }
+  .theme-btn:hover { opacity: 1; }
+
+  /* =========================================================
+     VARIANT A — "Scholar": minimal academic, single column, serif
+     ========================================================= */
+  #A { --bg:#fbfaf7; --fg:#1f1d1a; --muted:#6b665e; --rule:#e6e2da; --accent:#9a3412;
+       background:var(--bg); color:var(--fg); min-height:100vh;
+       font-family:"Source Serif 4", Georgia, serif; font-size:18px; line-height:1.65; }
+  [data-theme=dark] #A { --bg:#161513; --fg:#ece8e1; --muted:#a29c92; --rule:#2c2a26; --accent:#fb923c; }
+  #A .wrap { max-width: 680px; margin: 0 auto; padding: 4rem 1.25rem 6rem; }
+  #A header { display:flex; gap:1.5rem; align-items:center; }
+  #A header img { width:96px; height:96px; border-radius:50%; object-fit:cover; filter:grayscale(1); border:1px solid var(--rule); }
+  #A h1 { font-weight:600; font-size:2.1rem; margin:0; letter-spacing:-.01em; line-height:1.15; }
+  #A .role { color:var(--muted); margin:.25rem 0 0; font-size:1rem; }
+  #A .links { display:flex; flex-wrap:wrap; gap:.25rem 1.1rem; margin:1.5rem 0 2.5rem; font-family:Inter,sans-serif; font-size:.85rem; }
+  #A .links a { color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; }
+  #A .links a:hover { border-color:var(--accent); }
+  #A h2 { font-family:Inter,sans-serif; font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+          font-weight:600; margin:3rem 0 1rem; padding-bottom:.5rem; border-bottom:1px solid var(--rule); }
+  #A p { margin:0 0 1rem; }
+  #A .lede { font-size:1.2rem; font-style:italic; }
+  #A ol { list-style:none; padding:0; margin:0; }
+  #A li { margin:0 0 1.1rem; }
+  #A .t { font-weight:600; }
+  #A .a, #A .v { color:var(--muted); font-size:.92rem; }
+  #A .a b { color:var(--fg); font-weight:600; }
+  #A .year { font-family:Inter,sans-serif; font-weight:700; font-size:.9rem; margin:2rem 0 .75rem; color:var(--accent); }
+  #A .tag { font-family:Inter,sans-serif; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted);
+            border:1px solid var(--rule); border-radius:3px; padding:0 .35rem; margin-left:.4rem; white-space:nowrap; }
+  #A .topbar { display:flex; justify-content:flex-end; font-family:Inter,sans-serif; }
+
+  /* =========================================================
+     VARIANT B — "Sidebar": sticky profile column + filterable pubs, sans
+     ========================================================= */
+  #B { --bg:#ffffff; --panel:#f6f7fb; --fg:#0f172a; --muted:#64748b; --rule:#e2e8f0; --accent:#4f46e5; --accent-soft:#eef2ff;
+       background:var(--bg); color:var(--fg); min-height:100vh; font-family:Inter, system-ui, sans-serif; font-size:16px; line-height:1.6; }
+  [data-theme=dark] #B { --bg:#0b1020; --panel:#111833; --fg:#e2e8f0; --muted:#94a3b8; --rule:#1e293b; --accent:#818cf8; --accent-soft:#1e1b4b; }
+  #B .grid { display:grid; grid-template-columns: 320px 1fr; min-height:100vh; }
+  #B aside { background:var(--panel); border-right:1px solid var(--rule); padding:3rem 2rem; }
+  #B aside .stick { position:sticky; top:3rem; }
+  #B aside img { width:140px; height:140px; border-radius:20px; object-fit:cover; display:block; margin-bottom:1.25rem; }
+  #B h1 { font-size:1.6rem; font-weight:800; margin:0; letter-spacing:-.02em; line-height:1.2; }
+  #B .role { color:var(--muted); font-size:.95rem; margin:.5rem 0 1.5rem; }
+  #B nav a { display:block; padding:.4rem .75rem; border-radius:8px; text-decoration:none; color:var(--muted); font-weight:500; font-size:.92rem; }
+  #B nav a:hover, #B nav a.cur { background:var(--accent-soft); color:var(--accent); }
+  #B .icons { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.5rem 0; }
+  #B .icons a { font-size:.78rem; font-weight:600; text-decoration:none; padding:.35rem .65rem; border:1px solid var(--rule); border-radius:8px; background:var(--bg); }
+  #B .icons a:hover { border-color:var(--accent); color:var(--accent); }
+  #B main { padding:3rem clamp(1.25rem, 5vw, 4rem); max-width:900px; }
+  #B h2 { font-size:1.25rem; font-weight:700; margin:0 0 1rem; letter-spacing:-.01em; }
+  #B section { margin-bottom:3.5rem; }
+  #B .callout { border-left:3px solid var(--accent); padding:.25rem 0 .25rem 1rem; font-weight:600; font-size:1.05rem; margin:1.25rem 0; }
+  #B .chips { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem; }
+  #B .chip { cursor:pointer; border:1px solid var(--rule); background:var(--bg); color:var(--muted); font:inherit; font-size:.82rem; font-weight:500;
+             padding:.3rem .8rem; border-radius:999px; }
+  #B .chip.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+  #B .pub { display:grid; grid-template-columns: 56px 1fr; gap:1rem; padding:1rem 0; border-top:1px solid var(--rule); }
+  #B .pub .y { font-family:"JetBrains Mono",monospace; font-size:.8rem; color:var(--muted); padding-top:.15rem; }
+  #B .pub .t { font-weight:600; }
+  #B .pub .a { color:var(--muted); font-size:.88rem; }
+  #B .pub .a b { color:var(--fg); }
+  #B .pub .v { font-size:.85rem; font-style:italic; color:var(--muted); }
+  #B .pub .acts { display:flex; gap:.4rem; margin-top:.4rem; }
+  #B .pub .acts span { font-size:.72rem; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:.1rem .5rem; border-radius:5px; }
+  #B .badge { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.1rem .45rem; border-radius:4px; margin-left:.35rem;
+              background:var(--accent-soft); color:var(--accent); vertical-align:2px; }
+  @media (max-width: 860px) { #B .grid { grid-template-columns:1fr; } #B aside { border-right:0; border-bottom:1px solid var(--rule); } #B aside .stick { position:static; } #B nav { display:none; } }
+
+  /* =========================================================
+     VARIANT C — "Hero": bold landing page, research themes, timeline
+     ========================================================= */
+  #C { --bg:#fafafa; --fg:#0a0a0a; --muted:#525252; --card:#ffffff; --rule:#e5e5e5; --a1:#0d9488; --a2:#2563eb;
+       background:var(--bg); color:var(--fg); min-height:100vh; font-family:Inter, system-ui, sans-serif; line-height:1.6; }
+  [data-theme=dark] #C { --bg:#0a0a0a; --fg:#fafafa; --muted:#a3a3a3; --card:#141414; --rule:#262626; --a1:#2dd4bf; --a2:#60a5fa; }
+  #C .bar { position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); background:color-mix(in srgb, var(--bg) 80%, transparent);
+            border-bottom:1px solid var(--rule); }
+  #C .bar .in { max-width:1100px; margin:0 auto; padding:.8rem 1.25rem; display:flex; align-items:center; gap:1.5rem; }
+  #C .bar strong { font-weight:800; letter-spacing:-.02em; margin-right:auto; }
+  #C .bar a { text-decoration:none; color:var(--muted); font-size:.9rem; font-weight:500; }
+  #C .bar a:hover { color:var(--fg); }
+  #C .hero { max-width:1100px; margin:0 auto; padding:6rem 1.25rem 5rem; display:grid; grid-template-columns:1.4fr 1fr; gap:3rem; align-items:center; }
+  #C .eyebrow { font-family:"JetBrains Mono",monospace; font-size:.8rem; color:var(--a1); margin:0 0 1rem; }
+  #C .hero h1 { font-size:clamp(1.9rem, 3.5vw, 2.5rem); line-height:1.15; letter-spacing:-.025em; font-weight:700; margin:0 0 .35rem; }
+  #C .hero .role { font-size:1.05rem; font-weight:500; color:var(--fg); margin:0 0 1.25rem; }
+  #C .grad { background:linear-gradient(90deg, var(--a1), var(--a2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  #C .hero p { font-size:1.15rem; color:var(--muted); max-width:36rem; margin:0 0 2rem; }
+  #C .cta { display:flex; flex-wrap:wrap; gap:.75rem; }
+  #C .btn { text-decoration:none; font-weight:600; font-size:.92rem; padding:.7rem 1.2rem; border-radius:10px; border:1px solid var(--rule); background:var(--card); }
+  #C .btn.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  #C .portrait { position:relative; justify-self:center; }
+  #C .portrait::before { content:""; position:absolute; inset:-14px; border-radius:32px; background:linear-gradient(135deg, var(--a1), var(--a2)); opacity:.25; filter:blur(24px); }
+  #C .portrait img { position:relative; width:min(320px, 70vw); aspect-ratio:1; object-fit:cover; border-radius:28px; border:1px solid var(--rule); }
+  #C .sec { max-width:1100px; margin:0 auto; padding:4rem 1.25rem; }
+  #C .sec h2 { font-size:2rem; letter-spacing:-.03em; font-weight:800; margin:0 0 .5rem; }
+  #C .sec .sub { color:var(--muted); margin:0 0 2.5rem; }
+  #C .themes { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem; }
+  #C .card { background:var(--card); border:1px solid var(--rule); border-radius:16px; padding:1.5rem; }
+  #C .card .ic { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; font-size:1.2rem;
+                 background:color-mix(in srgb, var(--a1) 15%, transparent); margin-bottom:1rem; }
+  #C .card h3 { margin:0 0 .5rem; font-size:1.05rem; }
+  #C .card p { margin:0; color:var(--muted); font-size:.92rem; }
+  #C .tl { border-left:2px solid var(--rule); margin-left:.5rem; }
+  #C .tl .yr { position:relative; font-weight:800; font-size:1.3rem; margin:2rem 0 1rem 1.5rem; }
+  #C .tl .yr::before { content:""; position:absolute; left:calc(-1.5rem - 7px); top:.45rem; width:12px; height:12px; border-radius:50%;
+                       background:linear-gradient(135deg, var(--a1), var(--a2)); }
+  #C .tl .p { margin:0 0 1rem 1.5rem; padding:1rem 1.25rem; background:var(--card); border:1px solid var(--rule); border-radius:12px; }
+  #C .tl .p .t { font-weight:600; }
+  #C .tl .p .m { color:var(--muted); font-size:.85rem; }
+  #C .tl .p .m b { color:var(--fg); }
+  #C .pill { font-family:"JetBrains Mono",monospace; font-size:.7rem; color:var(--a1); margin-left:.5rem; }
+  #C footer { border-top:1px solid var(--rule); padding:2rem 1.25rem; text-align:center; color:var(--muted); font-size:.85rem; }
+  @media (max-width: 860px) { #C .hero { grid-template-columns:1fr; padding-top:3rem; } #C .themes { grid-template-columns:1fr; } #C .bar a.nav { display:none; } }
+
+  /* ---------- Prototype switcher (not part of any design) ---------- */
+  #proto-switch { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:999; display:flex; align-items:center; gap:.25rem;
+    background:#111; color:#fff; border-radius:999px; padding:.35rem; box-shadow:0 8px 30px rgba(0,0,0,.35); font:500 13px/1 system-ui, sans-serif;
+    outline:2px dashed #facc15; outline-offset:3px; }
+  #proto-switch button { cursor:pointer; border:0; background:#2a2a2a; color:#fff; width:32px; height:32px; border-radius:50%; font-size:15px; }
+  #proto-switch button:hover { background:#facc15; color:#111; }
+  #proto-switch span { padding:0 .9rem; white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ======================= VARIANT A ======================= -->
+<div class="variant" id="A">
+  <div class="wrap">
+    <div class="topbar"><button class="theme-btn" data-toggle-theme>◐ Theme</button></div>
+    <header>
+      <img src="../img/bevan_koopman-sketch.jpg" alt="Bevan Koopman">
+      <div>
+        <h1>Bevan Koopman</h1>
+        <p class="role">Health Search team lead, CSIRO Australian e-Health Research Centre · Associate Professor, University of Queensland</p>
+      </div>
+    </header>
+    <nav class="links">
+      <a href="#">bevan.koopman@csiro.au</a><a href="#">Google Scholar</a><a href="#">ORCID</a><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">PhD thesis</a>
+    </nav>
+
+    <p class="lede">My research is about helping people find relevant and reliable health information to make health-related decisions.</p>
+    <p>I lead the Health Search team at the Australian e-Health Research Centre, CSIRO, and I'm an Associate Professor in Language Technologies at the School of EECS, University of Queensland. My work spans neural and LLM-based ranking, clinical-trial matching, systematic-review automation and radiology report generation.</p>
+
+    <h2>Selected publications</h2>
+    <ol data-pubs="selected" data-style="A"></ol>
+
+    <h2>All publications</h2>
+    <div data-pubs="all" data-style="A"></div>
+
+    <h2>Contact</h2>
+    <p>Australian e-Health Research Centre, Level 7, STARS Hospital, 296 Herston Rd, Herston QLD 4029, Australia.</p>
+  </div>
+</div>
+
+<!-- ======================= VARIANT B ======================= -->
+<div class="variant" id="B">
+  <div class="grid">
+    <aside><div class="stick">
+      <img src="../img/bevan_koopman-sketch.jpg" alt="Bevan Koopman">
+      <h1>Bevan Koopman</h1>
+      <p class="role">Health Search team lead, CSIRO AEHRC<br>Associate Professor, UQ</p>
+      <nav>
+        <a href="#b-about" class="cur">About</a><a href="#b-pubs">Publications</a><a href="#b-contact">Contact</a><a href="#">PhD thesis</a>
+      </nav>
+      <div class="icons"><a href="#">Email</a><a href="#">Scholar</a><a href="#">ORCID</a><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
+      <button class="theme-btn" data-toggle-theme>◐ Theme</button>
+    </div></aside>
+    <main>
+      <section id="b-about">
+        <h2>About</h2>
+        <p>I'm a researcher in search and language technologies. I lead the Health Search team at the Australian e-Health Research Centre, CSIRO, and I'm an Associate Professor in Language Technologies at the University of Queensland.</p>
+        <div class="callout">At its core, my research is about helping people find relevant and reliable health information to make health-related decisions.</div>
+        <p>Clinically, that means evidence-based medicine, clinical-trial recruitment and radiology. Technically, it means semantic and neural ranking, injecting medical knowledge into models, and keeping the human searcher in the loop.</p>
+      </section>
+      <section id="b-pubs">
+        <h2>Publications</h2>
+        <div class="chips" data-chips></div>
+        <div data-pubs="all" data-style="B"></div>
+      </section>
+      <section id="b-contact">
+        <h2>Contact</h2>
+        <p>Australian e-Health Research Centre, Level 7, STARS Hospital, 296 Herston Rd, Herston QLD 4029, Australia.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ======================= VARIANT C ======================= -->
+<div class="variant" id="C">
+  <div class="bar"><div class="in">
+    <strong><span class="grad">BK</span></strong>
+    <a class="nav" href="#c-research">Research</a><a class="nav" href="#c-pubs">Publications</a><a class="nav" href="#c-contact">Contact</a>
+    <button class="theme-btn" data-toggle-theme>◐</button>
+  </div></div>
+  <div class="hero">
+    <div>
+      <p class="eyebrow">// CSIRO · University of Queensland</p>
+      <h1>Bevan Koopman</h1>
+      <p class="role">Search, LLMs &amp; language technologies</p>
+      <p>I research how large language models can search, rank and reason over information, and how to evaluate AI systems we can trust. I'm at CSIRO and an Associate Professor in Language Technologies at the University of Queensland.</p>
+      <div class="cta"><a class="btn primary" href="#c-pubs">Publications →</a><a class="btn" href="#">Google Scholar</a><a class="btn" href="#">Email</a><a class="btn" href="#">GitHub</a></div>
+    </div>
+    <div class="portrait"><img src="../img/bevan_koopman-sketch.jpg" alt="Bevan Koopman"></div>
+  </div>
+  <div class="sec" id="c-research">
+    <h2>Research</h2>
+    <p class="sub">Building and evaluating LLM-powered search and AI systems.</p>
+    <div class="themes">
+      <div class="card"><div class="ic">🔎</div><h3>LLMs for search</h3><p>LLM-based rankers and rerankers, dense and generative retrieval, and retrieval-augmented generation.</p></div>
+      <div class="card"><div class="ic">🤖</div><h3>Agentic evaluation of AI</h3><p>Using agents to evaluate AI systems without labels: RAG quality, hallucination, and robustness to prompt injection.</p></div>
+      <div class="card"><div class="ic">🩻</div><h3>Medical AI</h3><p>Chest X-ray report generation, systematic-review automation and clinical-trial matching.</p></div>
+    </div>
+  </div>
+  <div class="sec" id="c-pubs">
+    <h2>Publications</h2>
+    <p class="sub">158 papers since 2002 · showing a sample</p>
+    <div class="tl" data-pubs="all" data-style="C"></div>
+  </div>
+  <footer id="c-contact">Australian e-Health Research Centre · STARS Hospital, Herston QLD · bevan.koopman@csiro.au</footer>
+</div>
+
+<div id="proto-switch">
+  <button data-step="-1" aria-label="Previous variant">‹</button>
+  <span id="proto-label"></span>
+  <button data-step="1" aria-label="Next variant">›</button>
+</div>
+
+<script>
+// Sample of real entries from src/data/publications.bib (prototype only).
+const PUBS = [
+  {y:2026, k:"conference", sel:true,  t:"Rank-R1: Enhancing reasoning in LLM-based document rerankers via reinforcement learning", a:"S. Zhuang, X. Ma, Z. Yao, S. Wang, B. Koopman, J. Lin, G. Zuccon", v:"SIGIR 2026"},
+  {y:2026, k:"conference", sel:false, t:"AutoBool: Reinforcement-learned LLM for effective automatic systematic reviews Boolean query generation", a:"S. Wang, H. Scells, B. Koopman, G. Zuccon", v:"EACL 2026"},
+  {y:2026, k:"conference", sel:true,  t:"Evalugator: Rapid, agile development and evaluation of retrieval augmented generation systems without labels", a:"B. Koopman, H. Li, S. Wang, G. Zuccon", v:"ECIR 2026"},
+  {y:2026, k:"preprint",   sel:false, t:"CXRMate-2: Structured multimodal temporal embeddings and tractable reinforcement learning for clinically acceptable chest X-ray report generation", a:"A. Nicolson, E. J. Cooper, H.-J. Yoon, … , I. A. Scott, B. Koopman", v:"arXiv 2604.18967"},
+  {y:2025, k:"conference", sel:false, t:"Whole-pool setwise reranking with long-context language models", a:"H. Li, C. Yu, T. Leelanupab, B. Koopman, G. Zuccon", v:"arXiv"},
+  {y:2024, k:"conference", sel:true,  t:"A setwise approach for effective and highly efficient zero-shot ranking with large language models", a:"S. Zhuang, H. Zhuang, B. Koopman, G. Zuccon", v:"SIGIR 2024"},
+  {y:2024, k:"conference", sel:false, t:"Zero-shot generative large language models for systematic review screening automation", a:"S. Wang, H. Scells, S. Zhuang, M. Potthast, B. Koopman, G. Zuccon", v:"ECIR 2024"},
+  {y:2023, k:"conference", sel:true,  t:"Dr ChatGPT tell me what I want to hear: How different prompts impact health answer correctness", a:"B. Koopman, G. Zuccon", v:"EMNLP 2023"},
+  {y:2023, k:"journal",    sel:false, t:"Improving chest X-ray report generation by leveraging warm starting", a:"A. Nicolson, J. Dowling, B. Koopman", v:"Artificial Intelligence in Medicine 144"},
+  {y:2023, k:"journal",    sel:false, t:"AgAsk: An agent to help answer farmer's questions from scientific documents", a:"B. Koopman, A. Mourad, H. Li, … , G. Zuccon", v:"Int. J. Digital Libraries"},
+];
+const KINDS = ["all","conference","journal","preprint"];
+const bold = a => a.replace("B. Koopman","<b>B. Koopman</b>");
+
+function renderA(list, el, grouped) {
+  if (!grouped) { el.innerHTML = list.map(p => `<li><div class="t">${p.t}</div><div class="a">${bold(p.a)}</div><div class="v">${p.v}<span class="tag">${p.k}</span></div></li>`).join(""); return; }
+  const years = [...new Set(list.map(p=>p.y))];
+  el.innerHTML = years.map(y => `<div class="year">${y}</div><ol>` + list.filter(p=>p.y===y).map(p =>
+    `<li><span class="t">${p.t}.</span> <span class="a">${bold(p.a)}.</span> <span class="v"><i>${p.v}</i></span><span class="tag">${p.k}</span></li>`).join("") + `</ol>`).join("");
+}
+function renderB(list, el) {
+  el.innerHTML = list.map(p => `<div class="pub"><div class="y">${p.y}</div><div>
+    <div class="t">${p.t}${p.sel?'<span class="badge">Selected</span>':''}</div>
+    <div class="a">${bold(p.a)}</div><div class="v">${p.v} · ${p.k}</div>
+    <div class="acts"><span>PDF</span><span>DOI</span><span>BibTeX</span></div></div></div>`).join("");
+}
+function renderC(list, el) {
+  const years = [...new Set(list.map(p=>p.y))];
+  el.innerHTML = years.map(y => `<div class="yr">${y}</div>` + list.filter(p=>p.y===y).map(p =>
+    `<div class="p"><div class="t">${p.t}<span class="pill">${p.k}</span></div><div class="m">${bold(p.a)} · <i>${p.v}</i></div></div>`).join("")).join("");
+}
+document.querySelectorAll("[data-pubs]").forEach(el => {
+  const sel = el.dataset.pubs === "selected", list = sel ? PUBS.filter(p=>p.sel) : PUBS;
+  ({A:(l,e)=>renderA(l,e,!sel), B:renderB, C:renderC})[el.dataset.style](list, el);
+});
+// Variant B type filter
+const chips = document.querySelector("[data-chips]");
+chips.innerHTML = KINDS.map((k,i)=>`<button class="chip${i?'':' on'}" data-k="${k}">${k[0].toUpperCase()+k.slice(1)}</button>`).join("");
+chips.addEventListener("click", e => {
+  const k = e.target.dataset.k; if (!k) return;
+  chips.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on", c===e.target));
+  renderB(k==="all"?PUBS:PUBS.filter(p=>p.k===k), document.querySelector('#B [data-pubs]'));
+});
+
+// Theme: follows OS, toggle overrides
+const root = document.documentElement;
+root.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+document.querySelectorAll("[data-toggle-theme]").forEach(b => b.onclick = () => root.dataset.theme = root.dataset.theme==="dark"?"light":"dark");
+
+// Prototype switcher
+const VARIANTS = [["A","Scholar: minimal serif, single column"],["B","Sidebar: sticky profile + filterable list"],["C","Hero: bold landing, themes, timeline"]];
+function show(key) {
+  const i = Math.max(0, VARIANTS.findIndex(v=>v[0]===key));
+  document.querySelectorAll(".variant").forEach(v=>v.classList.toggle("on", v.id===VARIANTS[i][0]));
+  document.getElementById("proto-label").textContent = `${VARIANTS[i][0]} · ${VARIANTS[i][1]}`;
+  const u = new URL(location); u.searchParams.set("variant", VARIANTS[i][0]); history.replaceState(null,"",u);
+  window.scrollTo(0,0);
+}
+function step(d) { const cur = new URL(location).searchParams.get("variant")||"A"; const i = VARIANTS.findIndex(v=>v[0]===cur); show(VARIANTS[(i+d+VARIANTS.length)%VARIANTS.length][0]); }
+document.querySelectorAll("#proto-switch button").forEach(b => b.onclick = () => step(+b.dataset.step));
+addEventListener("keydown", e => { if (e.target.closest("input,textarea,[contenteditable]")) return; if (e.key==="ArrowLeft") step(-1); if (e.key==="ArrowRight") step(1); });
+show(new URL(location).searchParams.get("variant")||"A");
+</script>
+</body>
+</html>
