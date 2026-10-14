@@ -2,8 +2,8 @@
 export const site = {
   name: 'Bevan Koopman',
   eyebrow: 'Principal Research Scientist, Team Lead @ CSIRO · Associate Professor, UQ',
-  role: 'Search, LLMs & language technologies',
-  bio: 'I research how large language models can search, rank and reason over information, and how to evaluate AI systems we can trust.',
+  role: 'Information Retrieval (Search), LLMs & health',
+  bio: 'Experienced AI researcher and technical leader with deep expertise in Information Retrieval (Search) and LLMs. Proven ability to develop and deploy high-impact AI systems, lead research-driven innovation, and guide engineering teams to success in academic and industry settings. Extensive experience in the health space.',
   email: 'bevan.koopman@csiro.au',
   location: 'Brisbane, Australia',
   affiliation: 'CSIRO Australian e-Health Research Centre · The University of Queensland',
@@ -12,8 +12,7 @@ export const site = {
     scholar: 'https://scholar.google.com.au/citations?user=twCn-tYAAAAJ',
     github: 'https://github.com/bevankoopman',
     linkedin: 'https://au.linkedin.com/in/bevankoopman',
-    // TODO: replace with the dblp.org/pid/... profile URL (dblp blocked automated lookup).
-    dblp: 'https://dblp.org/search?q=Bevan+Koopman',
+    dblp: 'https://dblp.org/pid/96/9899.html',
   },
 };
 
@@ -37,3 +36,6 @@ export const themes = [
     blurb: 'Chest X-ray report generation, systematic-review automation and clinical-trial matching.',
   },
 ];
+
+
+

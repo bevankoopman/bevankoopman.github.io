@@ -18,7 +18,7 @@ import { site } from '../data/site';
     </div>
   </div>
   <div class="portrait">
-    <img src={site.photo} alt="Sketch portrait of Bevan Koopman" width="320" height="320" />
+    <img src={site.photo} alt="Sketch portrait of Bevan Koopman" width="256" height="256" />
   </div>
 </section>
 
@@ -41,12 +41,12 @@ import { site } from '../data/site';
     background: linear-gradient(135deg, var(--a1), var(--a2)); opacity: 0.25; filter: blur(24px);
   }
   .portrait img {
-    position: relative; display: block; width: min(320px, 70vw); aspect-ratio: 1; object-fit: cover;
-    border-radius: 28px; border: 1px solid var(--rule);
+    position: relative; display: block; width: min(256px, 56vw); aspect-ratio: 1; object-fit: cover;
+    border-radius: 15px; border: 1px solid var(--rule);
   }
   @media (max-width: 860px) {
     .hero { grid-template-columns: 1fr; padding-top: 2.5rem; gap: 2rem; }
     .portrait { order: -1; justify-self: start; }
-    .portrait img { width: 140px; border-radius: 20px; }
+    .portrait img { width: 112px; border-radius: 18px; }
   }
 </style>
