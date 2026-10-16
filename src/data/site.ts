@@ -121,7 +121,7 @@ export const experience = [
     years: '2008–2009',
     role: 'Senior Software Consultant',
     org: 'Permeance Technologies',
-    blurb: 'Content management for the Western Australian Department of Education.',
+    blurb: 'Software engineering at a startup including requirements, design, implementation and DevOps.',
   },
   {
     years: '2005–2007',
