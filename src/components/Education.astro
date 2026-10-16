@@ -1,0 +1,30 @@
+---
+import { education } from '../data/site';
+---
+<section id="education" class="section wrap" aria-labelledby="education-h">
+  <h2 id="education-h">Education</h2>
+  <div class="grid">
+    {education.map((e) => (
+      <article class="card">
+        <span class="years">{e.years}</span>
+        <h3>{e.degree}</h3>
+        <p class="org">{e.org}</p>
+        {e.note && <p class="note">{e.note}</p>}
+        {e.link && <a class="more" href={e.link}>About the thesis →</a>}
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section h2 { margin-bottom: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.5rem; }
+  .years { font-family: var(--font-mono); font-size: 0.8rem; color: var(--a1); }
+  h3 { margin: 0.4rem 0 0.15rem; font-size: 1.05rem; line-height: 1.35; }
+  .org { margin: 0; font-size: 0.9rem; font-weight: 500; }
+  .note { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.88rem; }
+  .more { display: inline-block; margin-top: 0.75rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+  .more:hover { text-decoration: underline; text-decoration-color: var(--a1); }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+</style>
