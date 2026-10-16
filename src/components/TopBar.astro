@@ -6,8 +6,10 @@ import Icon from './Icon.astro';
     <a class="mono" href="/" aria-label="Bevan Koopman, home"><span class="grad">BK</span></a>
     <nav aria-label="Main">
       <a href="/#research">Research</a>
+      <a href="/#projects">Projects</a>
+      <a class="opt" href="/#experience">Experience</a>
       <a href="/#publications">Publications</a>
-      <a href="/#contact">Contact</a>
+      <a class="opt" href="/#contact">Contact</a>
     </nav>
     <button class="theme" type="button" aria-label="Toggle dark mode" data-theme-toggle>
       <span class="when-light"><Icon name="moon" /></span>
@@ -44,5 +46,6 @@ import Icon from './Icon.astro';
   .when-dark { display: none; }
   :global([data-theme='dark']) .when-dark { display: contents; }
   :global([data-theme='dark']) .when-light { display: none; }
-  @media (max-width: 560px) { nav { gap: 1rem; } nav a { font-size: 0.85rem; } }
+  @media (max-width: 560px) { nav { gap: 0.9rem; } nav a { font-size: 0.82rem; } }
+  @media (max-width: 480px) { .opt { display: none; } }
 </style>
