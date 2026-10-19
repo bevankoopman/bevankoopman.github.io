@@ -134,6 +134,22 @@ const thesisPage: Record<string, string> = { 'Koopman2014Semantic-Search': '/phd
   }
   addEventListener('hashchange', reveal);
 
+  // Safari can reject navigator.clipboard.writeText, and only allows the
+  // execCommand fallback synchronously inside the click, so try that first.
+  function copyViaSelection(text: string) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.readOnly = true;
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+    document.body.append(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch {}
+    ta.remove();
+    return ok;
+  }
+
   root.addEventListener('click', async (e) => {
     const t = e.target as HTMLElement;
     if (t.matches('[data-more]')) {
@@ -141,12 +157,14 @@ const thesisPage: Record<string, string> = { 'Koopman2014Semantic-Search': '/phd
       t.parentElement!.querySelector('.me-tail')?.remove();
       t.remove();
     } else if (t.matches('[data-cite]')) {
+      const text = t.dataset.cite!;
       try {
-        await navigator.clipboard.writeText(t.dataset.cite!);
+        if (!copyViaSelection(text)) await navigator.clipboard.writeText(text);
         t.textContent = 'Copied ✓';
       } catch {
         t.textContent = 'Copy failed';
       }
+      t.focus();
       setTimeout(() => (t.textContent = 'Cite'), 1600);
     }
   });
