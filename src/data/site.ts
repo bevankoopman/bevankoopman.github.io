@@ -1,8 +1,9 @@
 // Content decided in "Decide content and sections" (issue #6).
 export const site = {
   name: 'Bevan Koopman',
-  eyebrow: 'Principal Research Scientist, Team Lead @ CSIRO · Associate Professor, UQ',
-  role: 'Information Retrieval (Search), LLMs & health',
+  role: 'Principal Research Scientist, Team Lead @ Commonwealth Scientific & Industrial Research Organisation (CSIRO) · Associate Professor, University of Queensland',
+  // Browser tab / search-result title only; not shown on the page.
+  tagline: 'Information Retrieval (Search), LLMs & health',
   bio: 'Experienced AI researcher and technical leader with deep expertise in Information Retrieval (Search) and LLMs. Proven ability to develop and deploy high-impact AI systems, lead research-driven innovation, and guide engineering teams to success in academic and industry settings. Extensive experience in the health space.',
   email: 'bevan.koopman@csiro.au',
   location: 'Brisbane, Australia',
