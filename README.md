@@ -1,4 +1,4 @@
-bevankoopman.github.io
+Bevan’s Homepage
 ======================
 
 Bevan Koopman's homepage, built with [Astro](https://astro.build) and deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `master`.
